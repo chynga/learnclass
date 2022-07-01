@@ -1,4 +1,5 @@
-import { Component } from "react";
+import React, { useState, useRef, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 import {
     Collapse,
@@ -10,36 +11,37 @@ import {
     NavLink,
 } from "reactstrap";
 
-class AppNavbar extends Component {
-    state = {
-        isOpen: false,
+export default function AppNavbar() {
+    const [isOpen, setIsOpen] = useState(false);
+
+    const toggle = () => {
+        setIsOpen(!isOpen);
     };
 
-    toggle = () => {
-        this.setState({
-            isOpen: !this.state.isOpen,
-        });
-    };
-
-    render() {
-        return (
-            <div>
-                <Navbar color="dark" dark expand="sm" className="mb-5">
-                    <NavbarBrand href="/">learnclass</NavbarBrand>
-                    <NavbarToggler onClick={this.toggle} />
-                    <Collapse isOpen={this.state.isOpen} navbar>
-                        <Nav className="ms-auto" navbar>
-                            <NavItem>
-                                <NavLink href="https://github.com/chynga">
-                                    GitHub
-                                </NavLink>
-                            </NavItem>
-                        </Nav>
-                    </Collapse>
-                </Navbar>
-            </div>
-        );
-    }
+    return (
+        <div>
+            <Navbar color="dark" dark expand="sm" className="mb-5">
+                <NavbarBrand tag={Link} to="/">
+                    learnclass
+                </NavbarBrand>
+                <NavbarToggler onClick={toggle} />
+                <Collapse isOpen={isOpen} navbar>
+                    <Nav navbar>
+                        <NavItem>
+                            <NavLink tag={Link} to="/courses">
+                                Courses
+                            </NavLink>
+                        </NavItem>
+                    </Nav>
+                    <Nav className="ms-auto" navbar>
+                        <NavItem>
+                            <NavLink href="https://github.com/chynga">
+                                GitHub
+                            </NavLink>
+                        </NavItem>
+                    </Nav>
+                </Collapse>
+            </Navbar>
+        </div>
+    );
 }
-
-export default AppNavbar;

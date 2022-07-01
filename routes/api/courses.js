@@ -6,7 +6,11 @@ const Course = require("../../models/Course");
 router.get("/", (req, res) => {
     Course.find()
         .sort({ name: 1 })
-        .then(items => res.json(items));
+        .then(course => res.json(course));
+});
+
+router.get("/:id", (req, res) => {
+    Course.findById(req.params.id).then(course => res.json(course));
 });
 
 router.post("/", (req, res) => {

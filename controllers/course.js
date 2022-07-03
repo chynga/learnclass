@@ -14,12 +14,8 @@ const getCourses = asyncHandler(async (req, res) => {
 // @route   POST /api/courses
 // @access  Private
 const addCourse = asyncHandler(async (req, res) => {
-    if (!req.body.name) {
-        res.status(400);
-        throw new Error("fields of item must be entered!");
-    }
-
     const course = await Course.create({
+        teacher: req.user.id,
         name: req.body.name,
         description: req.body.description,
     });
@@ -46,18 +42,6 @@ const updateCourse = asyncHandler(async (req, res) => {
         throw new Error("Course not found");
     }
 
-    //   // Check for user
-    //   if (!req.user) {
-    //     res.status(401)
-    //     throw new Error('User not found')
-    //   }
-
-    //   // Make sure the logged in user matches the goal user
-    //   if (goal.user.toString() !== req.user.id) {
-    //     res.status(401)
-    //     throw new Error('User not authorized')
-    //   }
-
     const updatedCourse = await Course.findByIdAndUpdate(
         req.params.id,
         req.body,
@@ -79,18 +63,6 @@ const deleteCourse = asyncHandler(async (req, res) => {
         res.status(400);
         throw new Error("Course not found");
     }
-
-    //   // Check for user
-    //   if (!req.user) {
-    //     res.status(401)
-    //     throw new Error('User not found')
-    //   }
-
-    //   // Make sure the logged in user matches the goal user
-    //   if (goal.user.toString() !== req.user.id) {
-    //     res.status(401)
-    //     throw new Error('User not authorized')
-    //   }
 
     await course.remove();
 

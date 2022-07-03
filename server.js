@@ -1,8 +1,10 @@
 const express = require("express");
 const dotenv = require("dotenv").config();
 const mongoose = require("mongoose");
+const { errorHandler } = require("./middleware/errorMiddleware");
 
-const courses = require("./routes/api/courses");
+const course = require("./routes/api/course");
+const user = require("./routes/api/user");
 
 const app = express();
 
@@ -34,14 +36,17 @@ app.use(express.urlencoded({ extended: false }));
 // passport.deserializeUser(User.deserializeUser());
 
 // DB
-const db = require("./config/keys").mongoURI;
+const db = process.env.MONGO_URI;
 
 mongoose
     .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log("MongoDB connected..."))
     .catch(err => console.log(err));
 
-app.use("/api/courses", courses);
+app.use("/api/courses", course);
+app.use("/api/users", user);
+
+app.use(errorHandler);
 
 const port = process.env.PORT || 5000;
 

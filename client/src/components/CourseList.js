@@ -13,17 +13,13 @@ const CourseList = () => {
     }, [dispatch]);
 
     return (
-        <Container>
-            {/* <Row> */}
-            <ListGroup>
-                {courses.map(course => (
-                    <ListGroupItem key={course._id}>
-                        <CourseItem course={course} />
-                    </ListGroupItem>
-                ))}
-            </ListGroup>
-            {/* </Row> */}
-        </Container>
+        <ListGroup>
+            {courses.map(course => (
+                <ListGroupItem key={course._id}>
+                    <CourseItem course={course} />
+                </ListGroupItem>
+            ))}
+        </ListGroup>
     );
 };
 

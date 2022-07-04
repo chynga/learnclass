@@ -35,8 +35,8 @@ export default function AppNavbar() {
                     </Nav>
                     <Nav className="ms-auto" navbar>
                         <NavItem>
-                            <NavLink href="https://github.com/chynga">
-                                GitHub
+                            <NavLink tag={Link} to="/register">
+                                Register
                             </NavLink>
                         </NavItem>
                     </Nav>

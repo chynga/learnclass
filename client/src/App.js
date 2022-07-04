@@ -8,20 +8,23 @@ import Home from "./components/Home";
 import CourseDetail from "./components/CourseDetail";
 
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Container } from "reactstrap";
 import "./App.css";
+import Register from "./pages/Register";
 
 function App() {
     return (
         <Provider store={store}>
             <Router>
-                <div className="App">
-                    <AppNavbar />
+                <AppNavbar />
+                <Container className="App">
                     <Routes>
                         <Route path="/" element={<Home />} />
                         <Route path="/courses" element={<CourseList />} />
                         <Route path="/courses/:id" element={<CourseDetail />} />
+                        <Route path="/register" element={<Register />} />
                     </Routes>
-                </div>
+                </Container>
             </Router>
         </Provider>
     );

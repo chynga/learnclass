@@ -34,7 +34,6 @@ const protect = asyncHandler(async (req, res, next) => {
 });
 
 const checkIfTeacher = asyncHandler(async (req, res, next) => {
-    console.log(req.user.role);
     if (req.user.role === "teacher") {
         next();
     } else {

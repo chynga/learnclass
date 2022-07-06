@@ -11,6 +11,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Container } from "reactstrap";
 import "./App.css";
 import Register from "./pages/Register";
+import Login from "./pages/Login";
 
 function App() {
     return (
@@ -23,6 +24,7 @@ function App() {
                         <Route path="/courses" element={<CourseList />} />
                         <Route path="/courses/:id" element={<CourseDetail />} />
                         <Route path="/register" element={<Register />} />
+                        <Route path="/login" element={<Login />} />
                     </Routes>
                 </Container>
             </Router>

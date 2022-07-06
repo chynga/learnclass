@@ -1,5 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { logout, reset } from "../features/auth/authSlice";
 
 import {
     Collapse,
@@ -12,6 +14,16 @@ import {
 } from "reactstrap";
 
 export default function AppNavbar() {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const { user } = useSelector(state => state.auth);
+
+    const onLogout = () => {
+        dispatch(logout());
+        dispatch(reset());
+        navigate("/");
+    };
+
     const [isOpen, setIsOpen] = useState(false);
 
     const toggle = () => {
@@ -34,11 +46,29 @@ export default function AppNavbar() {
                         </NavItem>
                     </Nav>
                     <Nav className="ms-auto" navbar>
-                        <NavItem>
-                            <NavLink tag={Link} to="/register">
-                                Register
-                            </NavLink>
-                        </NavItem>
+                        {user ? (
+                            <NavItem>
+                                <button
+                                    className="btn btn-success"
+                                    onClick={onLogout}
+                                >
+                                    Logout
+                                </button>
+                            </NavItem>
+                        ) : (
+                            <>
+                                <NavItem>
+                                    <NavLink tag={Link} to="/register">
+                                        Register
+                                    </NavLink>
+                                </NavItem>
+                                <NavItem>
+                                    <NavLink tag={Link} to="/login">
+                                        Login
+                                    </NavLink>
+                                </NavItem>
+                            </>
+                        )}
                     </Nav>
                 </Collapse>
             </Navbar>

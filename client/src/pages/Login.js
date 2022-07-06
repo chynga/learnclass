@@ -1,10 +1,21 @@
 import { useState, useEffect } from "react";
-import { FaSignInAlt } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { login, reset } from "../features/auth/authSlice";
 import Spinner from "../components/Spinner";
+import {
+    Row,
+    Card,
+    CardBody,
+    CardTitle,
+    Form,
+    FormGroup,
+    Label,
+    Input,
+    Button,
+    Container,
+} from "reactstrap";
 
 function Login() {
     const [formData, setFormData] = useState({
@@ -17,21 +28,21 @@ function Login() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    //   const { user, isLoading, isError, isSuccess, message } = useSelector(
-    //     (state) => state.auth
-    //   )
+    const { user, isLoading, isError, isSuccess, message } = useSelector(
+        state => state.auth
+    );
 
-    //   useEffect(() => {
-    //     if (isError) {
-    //       toast.error(message)
-    //     }
+    useEffect(() => {
+        if (isError) {
+            toast.error(message);
+        }
 
-    //     if (isSuccess || user) {
-    //       navigate('/')
-    //     }
+        if (isSuccess || user) {
+            navigate("/");
+        }
 
-    //     dispatch(reset())
-    //   }, [user, isError, isSuccess, message, navigate, dispatch])
+        dispatch(reset());
+    }, [user, isError, isSuccess, message, navigate, dispatch]);
 
     const onChange = e => {
         setFormData(prevState => ({
@@ -51,16 +62,16 @@ function Login() {
         dispatch(login(userData));
     };
 
-    //   if (isLoading) {
-    //     return <Spinner />
-    //   }
+    if (isLoading) {
+        return <Spinner />;
+    }
 
     return (
         <Row>
             <div className="col-md-6 offset-md-3">
                 <Card className="shadow">
                     <CardBody>
-                        <CardTitle className="h5">Register</CardTitle>
+                        <CardTitle className="h5">Login</CardTitle>
                         {/* <section className="heading">
                             <h1>
                                 <FaUser /> Register
@@ -68,7 +79,7 @@ function Login() {
                             <p>Please create an account</p>
                         </section> */}
 
-                        <Form>
+                        <Form onSubmit={onSubmit}>
                             {/* <form onSubmit={onSubmit}> */}
                             <FormGroup>
                                 <Label for="email">Email</Label>

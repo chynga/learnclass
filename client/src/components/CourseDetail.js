@@ -8,27 +8,47 @@ import {
     CardSubtitle,
     CardText,
     Button,
+    Spinner,
 } from "reactstrap";
-import { courseSelector, fetchCourse } from "../slices/course";
+import { getCourseById, reset } from "../features/courses/courseSlice";
 
 export default function CourseDetail() {
     const dispatch = useDispatch();
-    const { course, loading, hasErrors } = useSelector(courseSelector);
+    const { selectedCourse, isLoading, isError, message } = useSelector(
+        state => state.courses
+    );
+
     const { id } = useParams();
 
     useEffect(() => {
-        dispatch(fetchCourse(id));
-    }, [dispatch]);
+        if (isError) {
+            console.log(message);
+        }
+
+        dispatch(getCourseById(id));
+
+        return () => {
+            dispatch(reset());
+        };
+    }, [isError, message, dispatch]);
+
+    if (isLoading) {
+        return <Spinner />;
+    }
 
     return (
         <Card className="text-start">
             <CardBody>
-                <CardTitle tag="h5">{course.name}</CardTitle>
+                <CardTitle tag="h5">
+                    {selectedCourse.name || "course name"}
+                </CardTitle>
                 <CardSubtitle className="mb-2 text-muted" tag="h6">
-                    {course.credits || "no credit"}
+                    {selectedCourse.credits || "no credit"}
                 </CardSubtitle>
-                <CardText>{course.description}</CardText>
-                <Button tag={Link} to={`/courses/${course._id}`}>
+                <CardText>
+                    {selectedCourse.description || "COurse Descr"}
+                </CardText>
+                <Button tag={Link} to={`/courses/${selectedCourse._id}`}>
                     Info
                 </Button>
             </CardBody>

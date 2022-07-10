@@ -1,16 +1,31 @@
 import React, { useState, useRef, useEffect, Component } from "react";
 import { useSelector, useDispatch, connect } from "react-redux";
-import { Container, ListGroup, ListGroupItem } from "reactstrap";
-import { coursesSelector, fetchCourses } from "../slices/courses";
+import { Container, ListGroup, ListGroupItem, Spinner } from "reactstrap";
+import { getCourses, reset } from "../features/courses/courseSlice";
 import CourseItem from "./CourseItem";
 
 const CourseList = () => {
     const dispatch = useDispatch();
-    const { courses, loading, hasErrors } = useSelector(coursesSelector);
+
+    const { courses, isLoading, isError, message } = useSelector(
+        state => state.courses
+    );
 
     useEffect(() => {
-        dispatch(fetchCourses());
-    }, [dispatch]);
+        if (isError) {
+            console.log(message);
+        }
+
+        dispatch(getCourses());
+
+        return () => {
+            dispatch(reset());
+        };
+    }, [isError, message, dispatch]);
+
+    if (isLoading) {
+        return <Spinner />;
+    }
 
     return (
         <ListGroup>

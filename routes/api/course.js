@@ -6,8 +6,17 @@ const {
     getCourse,
     deleteCourse,
     updateCourse,
+    enrollToCourse,
 } = require("../../controllers/course");
-const { protect, checkIfTeacher } = require("../../middleware/authMiddleware");
+const {
+    protect,
+    checkIfTeacher,
+    checkIfStudent,
+} = require("../../middleware/authMiddleware");
+
+const p = () => {
+    console.log(1234);
+};
 
 router.route("/").get(getCourses).post(protect, checkIfTeacher, addCourse);
 router
@@ -15,5 +24,7 @@ router
     .get(getCourse)
     .delete(protect, checkIfTeacher, deleteCourse)
     .put(protect, checkIfTeacher, updateCourse);
+
+router.route("/:id/enroll").post(protect, checkIfStudent, enrollToCourse);
 
 module.exports = router;

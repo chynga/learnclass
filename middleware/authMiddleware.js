@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 const asyncHandler = require("express-async-handler");
-const User = require("../models/User");
+const { User } = require("../models/User");
 
 const protect = asyncHandler(async (req, res, next) => {
     let token;
@@ -42,4 +42,13 @@ const checkIfTeacher = asyncHandler(async (req, res, next) => {
     }
 });
 
-module.exports = { protect, checkIfTeacher };
+const checkIfStudent = asyncHandler(async (req, res, next) => {
+    if (req.user.role === "student") {
+        next();
+    } else {
+        res.status(444);
+        throw new Error("Only student can do this operation!");
+    }
+});
+
+module.exports = { protect, checkIfTeacher, checkIfStudent };

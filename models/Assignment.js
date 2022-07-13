@@ -16,6 +16,9 @@ const AssignmentSchema = mongoose.Schema(
             type: String,
             required: [true, "Please add a title"],
         },
+        description: {
+            type: String,
+        },
         resourses: [
             {
                 url: String,

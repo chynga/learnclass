@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
 const asyncHandler = require("express-async-handler");
 const { User } = require("../models/User");
+const Course = require("../models/Course");
 
 const protect = asyncHandler(async (req, res, next) => {
     let token;
@@ -51,4 +52,29 @@ const checkIfStudent = asyncHandler(async (req, res, next) => {
     }
 });
 
-module.exports = { protect, checkIfTeacher, checkIfStudent };
+// Checks if student enrolled to the course or if the teacher created the course
+const checkIfEnrolledOrOwner = asyncHandler(async (req, res, next) => {
+    const course = await Course.findById(req.params.id);
+
+    if (!course) {
+        res.status(400);
+        throw new Error("Course not found");
+    }
+
+    if (
+        !course.students.includes(req.user.id) &&
+        !course.teacher === req.user.id
+    ) {
+        res.status(444);
+        throw new Error("Do not have access to that resourse!");
+    }
+
+    next();
+});
+
+module.exports = {
+    protect,
+    checkIfTeacher,
+    checkIfStudent,
+    checkIfEnrolledOrOwner,
+};

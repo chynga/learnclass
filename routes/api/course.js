@@ -14,10 +14,6 @@ const {
     checkIfStudent,
 } = require("../../middleware/authMiddleware");
 
-const p = () => {
-    console.log(1234);
-};
-
 router.route("/").get(getCourses).post(protect, checkIfTeacher, addCourse);
 router
     .route("/:id")

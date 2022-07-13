@@ -18,11 +18,9 @@ const getAssignments = asyncHandler(async (req, res) => {
 const addAssignment = asyncHandler(async (req, res) => {
     const assignment = await Assignment.create({
         title: req.body.title,
+        description: req.body.description,
         resourses: req.body.resourses,
         course: req.params.id,
-        // teacher: req.user.id,
-        // name: req.body.name,
-        // description: req.body.description,
     });
 
     res.status(200).json(assignment);

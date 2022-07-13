@@ -42,11 +42,29 @@ const deleteCourse = async (courseId, token) => {
     return response.data;
 };
 
+// Enroll to course
+const enrollToCourse = async (courseId, token) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    };
+
+    const response = await axios.post(
+        API_URL + courseId + "/enroll",
+        {},
+        config
+    );
+
+    return response.data;
+};
+
 const courseService = {
     createCourse,
     getCourses,
     getCourseById,
     deleteCourse,
+    enrollToCourse,
 };
 
 export default courseService;

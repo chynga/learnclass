@@ -1,6 +1,6 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import {
     Card,
     CardBody,
@@ -10,15 +10,23 @@ import {
     Button,
     Spinner,
 } from "reactstrap";
-import { getCourseById, reset } from "../features/courses/courseSlice";
+import {
+    enrollToCourse,
+    getCourseById,
+    reset,
+} from "../features/courses/courseSlice";
+import { EnrollButton, GoToCourseButton } from "./Buttons";
 
 export default function CourseDetail() {
     const dispatch = useDispatch();
     const { selectedCourse, isLoading, isError, message } = useSelector(
         state => state.courses
     );
+    const { user } = useSelector(state => state.auth);
 
     const { id } = useParams();
+    const location = useLocation();
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (isError) {
@@ -36,6 +44,28 @@ export default function CourseDetail() {
         return <Spinner />;
     }
 
+    const enroll = () => {
+        dispatch(enrollToCourse(id));
+        navigate(`${location.pathname}/assignments`);
+        // navigate("/");
+    };
+
+    const CourseButton = props => {
+        if (!props.course._id) {
+            return <></>;
+        }
+        if (!user) {
+            return <></>;
+        } else if (
+            props.course.students.includes(user._id) ||
+            props.course.teacher === user._id
+        ) {
+            return <GoToCourseButton id={props.course._id} />;
+        } else if (!props.course.students.includes(user._id)) {
+            return <EnrollButton onClick={enroll} />;
+        }
+    };
+
     return (
         <Card className="text-start">
             <CardBody>
@@ -48,9 +78,7 @@ export default function CourseDetail() {
                 <CardText>
                     {selectedCourse.description || "COurse Descr"}
                 </CardText>
-                <Button tag={Link} to={`/courses/${selectedCourse._id}`}>
-                    Info
-                </Button>
+                <CourseButton course={selectedCourse} />
             </CardBody>
         </Card>
     );

@@ -44,9 +44,9 @@ mongoose
     .then(() => console.log("MongoDB connected..."))
     .catch(err => console.log(err));
 
+app.use("/api/users", user);
 app.use("/api/courses", course);
 app.use("/api/courses/:id/assignments", assignment);
-app.use("/api/users", user);
 
 app.use(errorHandler);
 

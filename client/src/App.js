@@ -12,6 +12,8 @@ import { Container } from "reactstrap";
 import "./App.css";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import AssignmentList from "./components/AssignmentList";
+import AssignmentDetail from "./components/AssignmentDetail";
 
 function App() {
     return (
@@ -23,6 +25,14 @@ function App() {
                         <Route path="/" element={<Home />} />
                         <Route path="/courses" element={<CourseList />} />
                         <Route path="/courses/:id" element={<CourseDetail />} />
+                        <Route
+                            path="/courses/:id/assignments"
+                            element={<AssignmentList />}
+                        />
+                        <Route
+                            path="/courses/:id/assignments/:assignmentId"
+                            element={<AssignmentDetail />}
+                        />
                         <Route path="/register" element={<Register />} />
                         <Route path="/login" element={<Login />} />
                     </Routes>

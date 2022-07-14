@@ -13,12 +13,12 @@ const initialState = {
 // Create new assignment
 export const createAssignment = createAsyncThunk(
     "assignments/create",
-    async (courseId, assignmentData, thunkAPI) => {
+    async (data, thunkAPI) => {
         try {
             const token = thunkAPI.getState().auth.user.token;
             return await assignmentService.createAssignment(
-                courseId,
-                assignmentData,
+                data.courseId,
+                data.assignmentData,
                 token
             );
         } catch (error) {
@@ -55,12 +55,12 @@ export const getAssignments = createAsyncThunk(
 // Get assignment by id
 export const getAssignmentById = createAsyncThunk(
     "assignments/show",
-    async (courseId, assignmentId, thunkAPI) => {
+    async (data, thunkAPI) => {
         try {
             const token = thunkAPI.getState().auth.user.token;
             return await assignmentService.getAssignmentById(
-                courseId,
-                assignmentId,
+                data.courseId,
+                data.assignmentId,
                 token
             );
         } catch (error) {
@@ -78,12 +78,12 @@ export const getAssignmentById = createAsyncThunk(
 // Delete course
 export const deleteAssignment = createAsyncThunk(
     "assignments/delete",
-    async (courseId, assignmentId, thunkAPI) => {
+    async (data, thunkAPI) => {
         try {
             const token = thunkAPI.getState().auth.user.token;
             return await assignmentService.deleteAssignment(
-                courseId,
-                assignmentId,
+                data.courseId,
+                data.assignmentId,
                 token
             );
         } catch (error) {

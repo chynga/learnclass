@@ -13,12 +13,11 @@ const initialState = {
 // Create new assignment
 export const createAssignment = createAsyncThunk(
     "assignments/create",
-    async (data, thunkAPI) => {
+    async (assignmentData, thunkAPI) => {
         try {
             const token = thunkAPI.getState().auth.user.token;
             return await assignmentService.createAssignment(
-                data.courseId,
-                data.assignmentData,
+                assignmentData,
                 token
             );
         } catch (error) {

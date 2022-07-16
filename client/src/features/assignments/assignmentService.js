@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // Create new assignment
-const createAssignment = async (courseId, assignmentData, token) => {
+const createAssignment = async (assignmentData, token) => {
     const config = {
         headers: {
             Authorization: `Bearer ${token}`,
@@ -9,7 +9,7 @@ const createAssignment = async (courseId, assignmentData, token) => {
     };
 
     const response = await axios.post(
-        `/api/courses/${courseId}/assignments`,
+        `/api/courses/${assignmentData.course}/assignments`,
         assignmentData,
         config
     );

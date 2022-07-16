@@ -1,9 +1,10 @@
-import React, { useState, useRef, useEffect, Component } from "react";
-import { useSelector, useDispatch, connect } from "react-redux";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { Container, ListGroup, ListGroupItem, Spinner } from "reactstrap";
+import { Button, ListGroup, ListGroupItem, Spinner } from "reactstrap";
 import { getAssignments, reset } from "../features/assignments/assignmentSlice";
 import AssignmentItem from "./AssignmentItem";
+import ItemModal from "./AssignmentModal";
 
 const AssignmentList = () => {
     const dispatch = useDispatch();
@@ -30,13 +31,18 @@ const AssignmentList = () => {
     }
 
     return (
-        <ListGroup>
-            {assignments.map(assignment => (
-                <ListGroupItem key={assignment._id}>
-                    <AssignmentItem assignment={assignment} />
-                </ListGroupItem>
-            ))}
-        </ListGroup>
+        <>
+            <h1>
+                Assignments <ItemModal courseId={id} />
+            </h1>
+            <ListGroup>
+                {assignments.map(assignment => (
+                    <ListGroupItem key={assignment._id}>
+                        <AssignmentItem assignment={assignment} />
+                    </ListGroupItem>
+                ))}
+            </ListGroup>
+        </>
     );
 };
 

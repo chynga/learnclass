@@ -14,7 +14,7 @@ import {
 import {
     getAssignmentById,
     reset,
-} from "../features/assignments/assignmentSlice";
+} from "../../features/assignments/assignmentSlice";
 
 export default function CourseDetail() {
     const dispatch = useDispatch();

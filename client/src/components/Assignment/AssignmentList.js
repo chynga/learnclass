@@ -2,7 +2,10 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Button, ListGroup, ListGroupItem, Spinner } from "reactstrap";
-import { getAssignments, reset } from "../features/assignments/assignmentSlice";
+import {
+    getAssignments,
+    reset,
+} from "../../features/assignments/assignmentSlice";
 import AssignmentItem from "./AssignmentItem";
 import ItemModal from "./AssignmentModal";
 

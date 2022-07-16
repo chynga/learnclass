@@ -12,8 +12,8 @@ import { Container } from "reactstrap";
 import "./App.css";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
-import AssignmentList from "./components/AssignmentList";
-import AssignmentDetail from "./components/AssignmentDetail";
+import AssignmentList from "./components/Assignment/AssignmentList";
+import AssignmentDetail from "./components/Assignment/AssignmentDetail";
 
 function App() {
     return (

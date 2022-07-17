@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import {
     Button,
@@ -10,26 +10,25 @@ import {
     Label,
     Input,
 } from "reactstrap";
-import { createAssignment } from "../../features/assignments/assignmentSlice";
+import {
+    createAssignment,
+    updateAssignment,
+} from "../../features/assignments/assignmentSlice";
 import style from "./Assignment.module.css";
 import { v4 as uuid } from "uuid";
-// import { WithContext as ReactTags } from "react-tag-input";
-
-// const KeyCodes = {
-//     comma: 188,
-//     enter: 13,
-// };
-
-// const delimiters = [KeyCodes.comma, KeyCodes.enter];
 
 const ItemModal = ({ assignment, courseId }) => {
     const [modal, setModal] = useState(false);
-    const [title, setTitle] = useState(assignment ? assignment.title : "");
+    const [title, setTitle] = useState(
+        assignment && assignment.title ? assignment.title : ""
+    );
     const [description, setDescription] = useState(
-        assignment ? assignment.description : ""
+        assignment && assignment.description ? assignment.description : ""
     );
     const [urls, setUrls] = useState(
-        assignment ? assignment.resourses.map(r => r.url) : []
+        assignment && assignment.resourses
+            ? assignment.resourses.map(r => r.url)
+            : []
     );
     const [input, setInput] = useState("");
     const [isKeyReleased, setIsKeyReleased] = useState(false);
@@ -83,22 +82,6 @@ const ItemModal = ({ assignment, courseId }) => {
         setIsKeyReleased(true);
     };
 
-    // const handleDeleteResourse = i => {
-    //     setResourses(resourses.filter((resourse, index) => index !== i));
-    // };
-    // const handleAdditionResourse = resourse => {
-    //     resourses([...resourses, resourse]);
-    // };
-    // const handleDragResourse = (resourse, currPos, newPos) => {
-    //     const newResourses = resourses.slice();
-
-    //     newResourses.splice(currPos, 1);
-    //     newResourses.splice(newPos, 0, resourse);
-
-    //     // re-render
-    //     setResourses(newResourses);
-    // };
-
     const handleOnSubmit = e => {
         e.preventDefault();
 
@@ -106,10 +89,24 @@ const ItemModal = ({ assignment, courseId }) => {
             title,
             description,
             course: courseId,
+            resourses: urls.map(url => {
+                return {
+                    url,
+                };
+            }),
         };
 
         // Add assignment via action
-        dispatch(createAssignment(assignmentData));
+        if (assignment) {
+            dispatch(
+                updateAssignment({
+                    assignmentData,
+                    assignmentId: assignment._id,
+                })
+            );
+        } else {
+            dispatch(createAssignment(assignmentData));
+        }
         // Close modal
         handleToggle();
     };
@@ -138,6 +135,7 @@ const ItemModal = ({ assignment, courseId }) => {
                                 id="title"
                                 placeholder="Add assignment"
                                 onChange={handleChangeTitle}
+                                value={title}
                             />
                             <Label for="description">Description</Label>
                             <Input
@@ -146,10 +144,11 @@ const ItemModal = ({ assignment, courseId }) => {
                                 id="description"
                                 placeholder="Add description"
                                 onChange={handleChangeDescription}
+                                value={description}
                             />
                             <div className={style.container}>
                                 {urls.map((url, i) => (
-                                    <div id={uuid()} className={style.tag}>
+                                    <div key={uuid()} className={style.tag}>
                                         {url}
                                         <button onClick={() => deleteUrl(i)}>
                                             x

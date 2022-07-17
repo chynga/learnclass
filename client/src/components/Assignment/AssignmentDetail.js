@@ -10,6 +10,7 @@ import {
     Button,
     Spinner,
 } from "reactstrap";
+import AssignmentModal from "./AssignmentModal";
 
 import {
     getAssignmentById,
@@ -61,7 +62,13 @@ export default function CourseDetail() {
     return (
         <Card className="text-start">
             <CardBody>
-                <CardTitle tag="h5">{selectedAssignment.title}</CardTitle>
+                <CardTitle tag="h5">
+                    {selectedAssignment.title}{" "}
+                    <AssignmentModal
+                        courseId={id}
+                        assignment={selectedAssignment}
+                    />
+                </CardTitle>
                 <CardText>{selectedAssignment.description}</CardText>
                 <Resourses assignment={selectedAssignment} />
             </CardBody>

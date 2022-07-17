@@ -7,7 +7,7 @@ import {
     reset,
 } from "../../features/assignments/assignmentSlice";
 import AssignmentItem from "./AssignmentItem";
-import ItemModal from "./AssignmentModal";
+import AssignmentModal from "./AssignmentModal";
 
 const AssignmentList = () => {
     const dispatch = useDispatch();
@@ -36,7 +36,7 @@ const AssignmentList = () => {
     return (
         <>
             <h1>
-                Assignments <ItemModal courseId={id} />
+                Assignments <AssignmentModal courseId={id} />
             </h1>
             <ListGroup>
                 {assignments.map(assignment => (

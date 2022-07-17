@@ -65,11 +65,29 @@ const deleteAssignment = async (courseId, assignmentId, token) => {
     return response.data;
 };
 
+// Update assignment
+const updateAssignment = async (assignment, assignmentId, token) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    };
+
+    const response = await axios.put(
+        `/api/courses/${assignment.course}/assignments/${assignmentId}`,
+        assignment,
+        config
+    );
+
+    return response.data;
+};
+
 const assignmentService = {
     createAssignment,
     getAssignments,
     getAssignmentById,
     deleteAssignment,
+    updateAssignment,
 };
 
 export default assignmentService;

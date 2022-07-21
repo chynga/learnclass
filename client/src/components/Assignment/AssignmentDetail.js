@@ -13,12 +13,15 @@ import {
 import AssignmentModal from "./AssignmentModal";
 
 import {
+    deleteAssignment,
     getAssignmentById,
     reset,
 } from "../../features/assignments/assignmentSlice";
+import { DeleteButton } from "../Buttons";
 
 export default function CourseDetail() {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const { selectedAssignment, isLoading, isError, message } = useSelector(
         state => state.assignments
     );
@@ -59,15 +62,21 @@ export default function CourseDetail() {
         return <></>;
     };
 
+    const onDelete = () => {
+        dispatch(deleteAssignment({ courseId: id, assignmentId }));
+        navigate(`/courses/${id}/assignments`);
+    };
+
     return (
         <Card className="text-start">
             <CardBody>
                 <CardTitle tag="h5">
-                    {selectedAssignment.title}{" "}
+                    {selectedAssignment.title}
                     <AssignmentModal
                         courseId={id}
                         assignment={selectedAssignment}
                     />
+                    <DeleteButton onDelete={onDelete} />
                 </CardTitle>
                 <CardText>{selectedAssignment.description}</CardText>
                 <Resourses assignment={selectedAssignment} />

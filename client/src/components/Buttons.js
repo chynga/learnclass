@@ -5,6 +5,10 @@ const EnrollButton = props => {
     return <Button onClick={props.onClick}>Enroll</Button>;
 };
 
+const DeleteButton = ({ onDelete }) => {
+    return <Button onClick={onDelete}>Delete</Button>;
+};
+
 const GoToCourseButton = props => {
     return (
         <Button tag={Link} to={`/courses/${props.id}/assignments`}>
@@ -13,4 +17,4 @@ const GoToCourseButton = props => {
     );
 };
 
-export { EnrollButton, GoToCourseButton };
+export { EnrollButton, GoToCourseButton, DeleteButton };

@@ -1,31 +1,31 @@
-const Navbar = () => {
+const Footer = () => {
     return (
-        <footer id="footer" class="footer">
-            <div class="first-footer">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <div class="widget megacourse">
-                                <h3 class="md">MegaCourse</h3>
+        <footer id="footer" className="footer">
+            <div className="first-footer">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-md-3">
+                            <div className="widget megacourse">
+                                <h3 className="md">MegaCourse</h3>
                                 <p>
                                     Lorem ipsum dolor sit amet, consectetuer
                                     adipiscing elit, sed diam nonummy nibh
                                     euismod tincidunt ut laoreet dolore magna
                                     aliquam erat volutpat
                                 </p>
-                                <a href="#" class="mc-btn btn-style-1">
+                                <a href="#" className="mc-btn btn-style-1">
                                     Get started
                                 </a>
                             </div>
                         </div>
 
-                        <div class="col-md-3">
-                            <div class="widget widget_latest_new">
-                                <h3 class="sm">Latest News</h3>
+                        <div className="col-md-3">
+                            <div className="widget widget_latest_new">
+                                <h3 className="sm">Latest News</h3>
                                 <ul>
                                     <li>
                                         <a href="#">
-                                            <div class="image-thumb">
+                                            <div className="image-thumb">
                                                 <img
                                                     src="images/team-13.jpg"
                                                     alt=""
@@ -39,7 +39,7 @@ const Navbar = () => {
                                     </li>
                                     <li>
                                         <a href="#">
-                                            <div class="image-thumb">
+                                            <div className="image-thumb">
                                                 <img
                                                     src="images/team-13.jpg"
                                                     alt=""
@@ -55,10 +55,10 @@ const Navbar = () => {
                             </div>
                         </div>
 
-                        <div class="col-md-2">
-                            <div class="widget quick_link">
-                                <h3 class="sm">Quick Links</h3>
-                                <ul class="list-style-block">
+                        <div className="col-md-2">
+                            <div className="widget quick_link">
+                                <h3 className="sm">Quick Links</h3>
+                                <ul className="list-style-block">
                                     <li>
                                         <a href="#">About us</a>
                                     </li>
@@ -78,58 +78,58 @@ const Navbar = () => {
                             </div>
                         </div>
 
-                        <div class="col-md-4">
-                            <div class="widget news_letter">
-                                <div class="inner">
-                                    <div class="letter-heading">
-                                        <h3 class="md">News letter</h3>
+                        <div className="col-md-4">
+                            <div className="widget news_letter">
+                                <div className="inner">
+                                    <div className="letter-heading">
+                                        <h3 className="md">News letter</h3>
                                         <p>
                                             Don’t miss a course sale! Join our
                                             network today and keep it up!
                                         </p>
                                     </div>
-                                    <div class="letter">
+                                    <div className="letter">
                                         <form>
                                             <input
-                                                class="input-text"
+                                                className="input-text"
                                                 type="text"
                                             />
-                                            <span class="no-spam">
+                                            <span className="no-spam">
                                                 * No spam guaranteed
                                             </span>
                                             <input
                                                 type="submit"
                                                 value="Submit now"
-                                                class="mc-btn btn-style-2"
+                                                className="mc-btn btn-style-2"
                                             />
                                         </form>
                                     </div>
                                 </div>
 
-                                <div class="overlay-color-3"></div>
+                                <div className="overlay-color-3"></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="second-footer">
-                <div class="container">
-                    <div class="contact">
-                        <div class="email">
-                            <i class="icon md-email"></i>
+            <div className="second-footer">
+                <div className="container">
+                    <div className="contact">
+                        <div className="email">
+                            <i className="icon md-email"></i>
                             <a href="#">course@megadrupal.com</a>
                         </div>
-                        <div class="phone">
-                            <i class="fa fa-mobile"></i>
+                        <div className="phone">
+                            <i className="fa fa-mobile"></i>
                             <span>+84 989 999 888</span>
                         </div>
-                        <div class="address">
-                            <i class="fa fa-map-marker"></i>
+                        <div className="address">
+                            <i className="fa fa-map-marker"></i>
                             <span>Maecenas sodales, nisl eget</span>
                         </div>
                     </div>
-                    <p class="copyright">
+                    <p className="copyright">
                         Copyright © 2014 Megadrupal. All rights reserved.
                     </p>
                 </div>
@@ -138,4 +138,4 @@ const Navbar = () => {
     );
 };
 
-export default Navbar;
+export default Footer;

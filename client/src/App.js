@@ -3,7 +3,7 @@ import { Provider } from "react-redux";
 import store from "./store";
 import { Container } from "reactstrap";
 import Navbar from "./components/Navbar";
-import Courses from "./components/Courses";
+import CourseCatalog from "./components/CourseCatalog";
 import Footer from "./components/Footer";
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -15,7 +15,7 @@ function App() {
         <Provider store={store}>
             <Router>
                 <Navbar />
-                <Courses />
+                <CourseCatalog />
                 <Footer />
                 <Container className="App">
                     <Routes>

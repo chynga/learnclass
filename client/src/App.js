@@ -1,28 +1,25 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store";
-
-import AppNavbar from "./components/AppNavbar";
-import CourseList from "./components/CourseList";
-import Home from "./components/Home";
-import CourseDetail from "./components/CourseDetail";
+import { Container } from "reactstrap";
+import Navbar from "./components/Navbar";
+import Courses from "./components/Courses";
+import Footer from "./components/Footer";
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Container } from "reactstrap";
 import "./App.css";
-import Register from "./pages/Register";
-import Login from "./pages/Login";
-import AssignmentList from "./components/Assignment/AssignmentList";
-import AssignmentDetail from "./components/Assignment/AssignmentDetail";
+import "./css/style.css";
 
 function App() {
     return (
         <Provider store={store}>
             <Router>
-                <AppNavbar />
+                <Navbar />
+                <Courses />
+                <Footer />
                 <Container className="App">
                     <Routes>
-                        <Route path="/" element={<Home />} />
+                        {/* <Route path="/" element={<Home />} />
                         <Route path="/courses" element={<CourseList />} />
                         <Route path="/courses/:id" element={<CourseDetail />} />
                         <Route
@@ -34,7 +31,7 @@ function App() {
                             element={<AssignmentDetail />}
                         />
                         <Route path="/register" element={<Register />} />
-                        <Route path="/login" element={<Login />} />
+                        <Route path="/login" element={<Login />} /> */}
                     </Routes>
                 </Container>
             </Router>

@@ -16,7 +16,17 @@ const addCourse = asyncHandler(async (req, res) => {
     const course = await Course.create({
         teacher: req.user.id,
         name: req.body.name,
+        intro: req.body.intro,
         description: req.body.description,
+        goals: req.body.goals,
+        bannerURL: req.body.bannerURL,
+        promoURL: req.body.promoURL,
+        duration: req.body.duration,
+        difficulty: req.body.difficulty,
+        categories: req.body.categories,
+        tools_required: req.body.tools_required,
+        tags: req.body.tags,
+        lectures: req.body.lectures,
         students: [],
     });
 

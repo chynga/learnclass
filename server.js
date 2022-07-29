@@ -4,7 +4,6 @@ const mongoose = require("mongoose");
 const { errorHandler } = require("./middleware/errorMiddleware");
 
 const course = require("./routes/api/course");
-const assignment = require("./routes/api/assignments");
 const user = require("./routes/api/user");
 
 const app = express();
@@ -46,7 +45,6 @@ mongoose
 
 app.use("/api/users", user);
 app.use("/api/courses", course);
-app.use("/api/courses/:id/assignments", assignment);
 
 app.use(errorHandler);
 

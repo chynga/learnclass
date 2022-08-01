@@ -5,7 +5,7 @@ const Course = require("../models/Course");
 // @route   GET /api/courses
 // @access  Private
 const getCourses = asyncHandler(async (req, res) => {
-    const courses = await Course.find().sort({ name: 1 });
+    const courses = await Course.find().sort({ name: 1 }).populate("teacher");
     res.status(200).json(courses);
 });
 
@@ -37,7 +37,7 @@ const addCourse = asyncHandler(async (req, res) => {
 // @route   GET /api/courses/:id
 // @access  Private
 const getCourse = asyncHandler(async (req, res) => {
-    const course = await Course.findById(req.params.id);
+    const course = await Course.findById(req.params.id).populate("teacher");
     res.status(200).json(course);
 });
 

@@ -42,20 +42,18 @@ const CourseSchema = new Schema(
         },
         categories: [
             {
-                category: {
-                    type: String,
-                    enum: ["it", "business", "design", "health_and_fitness"],
-                },
+                type: String,
+                enum: ["it", "business", "design", "health_and_fitness"],
             },
         ],
         tools_required: [
             {
-                tool: String,
+                type: String,
             },
         ],
         tags: [
             {
-                tag: String,
+                type: String,
             },
         ],
         lectures: [

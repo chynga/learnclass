@@ -1,27 +1,21 @@
 import { BsPeopleFill } from "react-icons/bs";
 
-const CoursePreview = () => {
+const CoursePreview = ({ course, user }) => {
     return (
         <div className="col-sm-6 col-md-4">
             <div className="mc-item mc-item-2">
                 <div className="image-heading">
-                    <img src="images/feature/img-1.jpg" alt="" />
-                </div>
-                <div className="meta-categories">
-                    <a href="#">Web design</a>
+                    <img src={course.bannerURL} alt="" />
                 </div>
                 <div className="content-item">
                     <div className="image-author">
                         <img src="images/avatar-1.jpg" alt="" />
                     </div>
                     <h4>
-                        <a href="course-intro.html">
-                            The Complete Digital Photography Course Amazon Top
-                            Seller
-                        </a>
+                        <a href="course-intro.html">{course.name}</a>
                     </h4>
                     <div className="name-author">
-                        By <a href="#">Name of Mr or Mrs</a>
+                        By <a href="#">{course.teacher.name}</a>
                     </div>
                 </div>
                 <div className="ft-item">
@@ -34,7 +28,7 @@ const CoursePreview = () => {
                     </div>
                     <div className="view-info">
                         <BsPeopleFill />
-                        2568
+                        {course.students.length}
                     </div>
                     <div className="price">Free</div>
                 </div>

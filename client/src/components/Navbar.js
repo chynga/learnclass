@@ -1,11 +1,13 @@
+import { Link } from "react-router-dom";
+
 const Navbar = () => {
     return (
         <header id="header" className="header">
             <div className="container">
                 <div className="logo">
-                    <a href="index.html">
+                    <Link to="/">
                         <img src="images/logo.png" alt="" />
-                    </a>
+                    </Link>
                 </div>
 
                 <nav className="navigation">
@@ -17,33 +19,24 @@ const Navbar = () => {
 
                     <ul className="menu">
                         <li>
-                            <a href="index.html">Home</a>
+                            <Link to="/">Home</Link>
                         </li>
 
                         <li className="menu-item-has-children">
-                            <a href="#">Login</a>
+                            <Link to="/login">Login</Link>
                             <ul className="sub-menu">
                                 <li>
-                                    <a href="login.html">Login</a>
+                                    <Link to="/login">Login</Link>
                                 </li>
                                 <li>
-                                    <a href="register.html">Register</a>
+                                    <Link to="/register">Register</Link>
                                 </li>
                             </ul>
                         </li>
                         <li>
-                            <a href="categories.html">Course</a>
+                            <Link to="/courses">Courses</Link>
                         </li>
                     </ul>
-
-                    <div className="search-box">
-                        <i className="icon md-search"></i>
-                        <div className="search-inner">
-                            <form>
-                                <input type="text" placeholder="key words" />
-                            </form>
-                        </div>
-                    </div>
 
                     <ul className="list-account-info">
                         <li className="list-item account">

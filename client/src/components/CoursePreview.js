@@ -1,4 +1,5 @@
 import { BsPeopleFill } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 const CoursePreview = ({ course, user }) => {
     return (
@@ -12,7 +13,7 @@ const CoursePreview = ({ course, user }) => {
                         <img src="images/avatar-1.jpg" alt="" />
                     </div>
                     <h4>
-                        <a href="course-intro.html">{course.name}</a>
+                        <Link to={`/courses/${course._id}`}>{course.name}</Link>
                     </h4>
                     <div className="name-author">
                         By <a href="#">{course.teacher.name}</a>

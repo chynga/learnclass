@@ -9,17 +9,17 @@ import Footer from "./components/Footer";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import "./css/style.css";
+import Home from "./components/Home";
 
 function App() {
     return (
         <Provider store={store}>
             <Router>
                 <Navbar />
-                <CourseCatalog />
-                <Footer />
-                <Container className="App">
-                    <Routes>
-                        {/* <Route path="/" element={<Home />} />
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/courses" element={<CourseCatalog />} />
+                    {/* <Route path="/" element={<Home />} />
                         <Route path="/courses" element={<CourseList />} />
                         <Route path="/courses/:id" element={<CourseDetail />} />
                         <Route
@@ -32,8 +32,9 @@ function App() {
                         />
                         <Route path="/register" element={<Register />} />
                         <Route path="/login" element={<Login />} /> */}
-                    </Routes>
-                </Container>
+                </Routes>
+                {/* <Home /> */}
+                <Footer />
             </Router>
         </Provider>
     );

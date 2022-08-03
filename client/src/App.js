@@ -1,15 +1,16 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store";
-import { Container } from "reactstrap";
+
 import Navbar from "./components/Navbar";
+import Home from "./components/Home";
 import CourseCatalog from "./components/CourseCatalog";
+import CourseDetail from "./components/CourseDetail";
 import Footer from "./components/Footer";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import "./css/style.css";
-import Home from "./components/Home";
 
 function App() {
     return (
@@ -19,6 +20,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/courses" element={<CourseCatalog />} />
+                    <Route path="/courses/:id" element={<CourseDetail />} />
                     {/* <Route path="/" element={<Home />} />
                         <Route path="/courses" element={<CourseList />} />
                         <Route path="/courses/:id" element={<CourseDetail />} />

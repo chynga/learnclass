@@ -5,7 +5,7 @@ import store from "./store";
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import CourseCatalog from "./components/CourseCatalog";
-import CourseDetail from "./components/CourseDetail";
+import CourseDetail from "./components/CourseDetail/CourseDetail";
 import Footer from "./components/Footer";
 
 import "bootstrap/dist/css/bootstrap.min.css";

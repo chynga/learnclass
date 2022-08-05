@@ -1,10 +1,10 @@
-import CoursePreview from "./CoursePreview";
+import CoursePreview from "../CoursePreview";
 import Sidebar from "./Sidebar";
 import { Spinner } from "reactstrap";
 
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getCourses, reset } from "../features/courses/courseSlice";
+import { getCourses, reset } from "../../features/courses/courseSlice";
 
 const CourseCatalog = () => {
     const dispatch = useDispatch();

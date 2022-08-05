@@ -1,6 +1,18 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { logout, reset } from "../features/auth/authSlice";
 
 const Navbar = () => {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const { user } = useSelector(state => state.auth);
+
+    const onLogout = () => {
+        dispatch(logout());
+        dispatch(reset());
+        navigate("/");
+    };
+
     return (
         <header id="header" className="header">
             <div className="container">
@@ -21,49 +33,38 @@ const Navbar = () => {
                         <li>
                             <Link to="/">Home</Link>
                         </li>
-
-                        <li className="menu-item-has-children">
-                            <Link to="/login">Login</Link>
-                            <ul className="sub-menu">
-                                <li>
-                                    <Link to="/login">Login</Link>
-                                </li>
-                                <li>
-                                    <Link to="/register">Register</Link>
-                                </li>
-                            </ul>
-                        </li>
                         <li>
                             <Link to="/courses">Courses</Link>
                         </li>
                     </ul>
 
-                    <ul className="list-account-info">
-                        <li className="list-item account">
-                            <div className="account-info item-click">
-                                <img src="images/team-13.jpg" alt="" />
-                            </div>
-                            <div className="toggle-account toggle-list">
-                                <ul className="list-account">
-                                    <li>
-                                        <a href="setting.html">
-                                            <i className="icon md-config"></i>
-                                            Setting
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="login.html">
-                                            <i className="icon md-arrow-right"></i>
-                                            Sign Out
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                    </ul>
+                    <UserAuthButton user={user} onLogout={onLogout} />
                 </nav>
             </div>
         </header>
+    );
+};
+
+const UserAuthButton = ({ user, onLogout }) => {
+    return (
+        <>
+            {user ? (
+                <ul className="menu border-left">
+                    <li>
+                        <a onClick={onLogout}>Logout</a>
+                    </li>
+                </ul>
+            ) : (
+                <ul className="menu border-left">
+                    <li>
+                        <Link to="/login">Login</Link>
+                    </li>
+                    <li>
+                        <Link to="/register">Register</Link>
+                    </li>
+                </ul>
+            )}
+        </>
     );
 };
 

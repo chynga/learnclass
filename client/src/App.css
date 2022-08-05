@@ -71,3 +71,10 @@
 .react-tabs__tab-panel--selected {
     display: block;
 }
+
+.border-left {
+    margin-bottom: 0;
+    margin-left: 16px;
+    border-left: 1px solid #11538C;
+    padding: 10px;
+}

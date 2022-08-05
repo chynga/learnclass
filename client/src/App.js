@@ -12,6 +12,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import "./css/style.css";
 import Login from "./components/User/Login";
+import Register from "./components/User/Register";
 
 function App() {
     return (
@@ -23,6 +24,7 @@ function App() {
                     <Route path="/courses" element={<CourseCatalog />} />
                     <Route path="/courses/:id" element={<CourseDetail />} />
                     <Route path="/login" element={<Login />} />
+                    <Route path="/register" element={<Register />} />
                     {/* <Route path="/" element={<Home />} />
                         <Route path="/courses" element={<CourseList />} />
                         <Route path="/courses/:id" element={<CourseDetail />} />

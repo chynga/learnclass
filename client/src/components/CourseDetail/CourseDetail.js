@@ -12,7 +12,7 @@ const CourseDetail = () => {
     const { selectedCourse, isLoading, isError, message } = useSelector(
         state => state.courses
     );
-    // const { user } = useSelector(state => state.auth);
+    const { user } = useSelector(state => state.auth);
 
     const { id } = useParams();
     const iconSize = 18;
@@ -40,7 +40,11 @@ const CourseDetail = () => {
             <section className="course-top">
                 <div className="container">
                     <div className="row mt-5">
-                        <LeftSide course={selectedCourse} iconSize={iconSize} />
+                        <LeftSide
+                            course={selectedCourse}
+                            iconSize={iconSize}
+                            user={user}
+                        />
                         <RightSide
                             course={selectedCourse}
                             iconSize={iconSize}

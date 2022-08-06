@@ -88,7 +88,7 @@ const Login = () => {
                                 </div>
                                 <div className="form-check">
                                     <input type="checkbox" id="check" />
-                                    <label for="check">
+                                    <label htmlFor="check">
                                         <i className="icon md-check-2"></i>
                                         Remember me
                                     </label>

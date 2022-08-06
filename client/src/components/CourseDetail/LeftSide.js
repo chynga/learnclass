@@ -4,8 +4,46 @@ import { IoMdSettings } from "react-icons/io";
 import { BiTime } from "react-icons/bi";
 import { BsCalendar2Check } from "react-icons/bs";
 import { v4 as uuid } from "uuid";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { enrollToCourse } from "../../features/courses/courseSlice";
+import { useDispatch } from "react-redux";
 
-const LeftSide = ({ course, iconSize }) => {
+const EnrollButton = ({ user, course }) => {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const location = useLocation();
+    const { id } = useParams();
+    console.log(course);
+
+    const enroll = () => {
+        if (!user) {
+            navigate("/login");
+        }
+
+        dispatch(enrollToCourse(id));
+        window.location.reload();
+    };
+
+    if (user && user.role === "teacher") {
+        return <p>Teachers can not enroll to courses</p>;
+    }
+
+    if (user && user.role === "student" && course.students.includes(user._id)) {
+        return <p>you are enrolled</p>;
+    }
+
+    return (
+        <a
+            href="#"
+            className="take-this-course mc-btn btn-style-1"
+            onClick={enroll}
+        >
+            Take this course
+        </a>
+    );
+};
+
+const LeftSide = ({ course, iconSize, user }) => {
     return (
         <div className="col-md-5">
             <div className="sidebar-course-intro">
@@ -21,9 +59,7 @@ const LeftSide = ({ course, iconSize }) => {
                         ></iframe>
                     </div>
                     <div className="price">Free</div>
-                    <a href="#" className="take-this-course mc-btn btn-style-1">
-                        Take this course
-                    </a>
+                    <EnrollButton user={user} course={course} />
                 </div>
 
                 <div className="new-course">

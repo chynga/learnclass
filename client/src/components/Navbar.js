@@ -36,6 +36,13 @@ const Navbar = () => {
                         <li>
                             <Link to="/courses">Courses</Link>
                         </li>
+                        {user && user.role === "teacher" ? (
+                            <li>
+                                <Link to="/courses/new">New Course</Link>
+                            </li>
+                        ) : (
+                            <></>
+                        )}
                     </ul>
 
                     <UserAuthButton user={user} onLogout={onLogout} />

@@ -13,6 +13,7 @@ import "./App.css";
 import "./css/style.css";
 import Login from "./components/User/Login";
 import Register from "./components/User/Register";
+import CreateCourse from "./components/CreateCourse/CreateCourse";
 
 function App() {
     return (
@@ -23,6 +24,7 @@ function App() {
                     <Route path="/" element={<Home />} />
                     <Route path="/courses" element={<CourseCatalog />} />
                     <Route path="/courses/:id" element={<CourseDetail />} />
+                    <Route path="/courses/new" element={<CreateCourse />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register />} />
                     {/* <Route path="/" element={<Home />} />

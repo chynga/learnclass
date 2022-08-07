@@ -6906,7 +6906,7 @@ footer#footer.footer-style-2 {
 .create-course-content .course-banner .upload-recrop {
   display: inline-block;
 }
-.create-course-content .promo-video .form-item input[type="text"] {
+.create-course-content .wide-input .form-item input[type="text"] {
   width: 100%;
   max-width: none;
   border: 1px solid #D4D4D4;
@@ -6920,6 +6920,7 @@ footer#footer.footer-style-2 {
   font-size: 13px;
   color: #a6a6a6;
 }
+
 .create-course-content .promo-video .upload-video {
   margin-top: 12px;
   font-family: 'Lato', sans-serif;

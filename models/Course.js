@@ -22,7 +22,7 @@ const CourseSchema = new Schema(
         },
         goals: [
             {
-                goal: String,
+                type: String,
             },
         ],
         bannerURL: {

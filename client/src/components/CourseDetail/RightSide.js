@@ -1,5 +1,6 @@
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import { BsCameraVideoFill } from "react-icons/bs";
+import { v4 as uuid } from "uuid";
 
 const RightSide = ({ course, iconSize }) => {
     return (
@@ -19,8 +20,8 @@ const RightSide = ({ course, iconSize }) => {
                         <h4 className="sm black bold">Goal of Course</h4>
                         <ul className="list-disc">
                             {course.goals.map(goal => (
-                                <li key={goal._id}>
-                                    <p>{goal.goal}</p>
+                                <li key={uuid()}>
+                                    <p>{goal}</p>
                                 </li>
                             ))}
                         </ul>

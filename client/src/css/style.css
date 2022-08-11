@@ -17,6 +17,9 @@
 
 /* 1.   Reset and shortcode
 --------------------------------------------------------------------------------*/
+a {
+    text-decoration: none;
+}
 a,
 input,
 textarea,
@@ -6969,24 +6972,25 @@ footer#footer.footer-style-2 {
 .create-course-content .instructors .author cite a {
   color: #666;
 }
-.create-course-content .instructors .author .remove {
+.create-course-content .remove {
   display: table-cell;
   vertical-align: middle;
   padding-left: 12px;
 }
-.create-course-content .instructors .author .remove .icon {
+.create-course-content .remove .icon {
   color: #F20505;
 }
-.create-course-content .instructors .add-instructor {
+.create-course-content .add-instructor {
   font-family: 'Lato', sans-serif;
   font-size: 14px;
   color: #A6A6A6;
+  cursor: pointer;
 }
-.create-course-content .instructors .add-instructor .icon {
+.create-course-content .add-instructor .icon {
   margin-right: 10px;
   color: #37abf2;
 }
-.create-course-content .instructors .add-instructor:hover {
+.create-course-content .add-instructor:hover {
   color: #37abf2;
 }
 .create-course-content .open-date .form-item,

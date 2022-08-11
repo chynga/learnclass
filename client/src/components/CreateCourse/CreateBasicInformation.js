@@ -1,9 +1,17 @@
 import { BsCameraVideoFill } from "react-icons/bs";
 import { BiSupport } from "react-icons/bi";
 import { BsCheckSquareFill } from "react-icons/bs";
+import { TiDeleteOutline } from "react-icons/ti";
+import { FaPlus } from "react-icons/fa";
 import { useEffect, useState } from "react";
 
-const CreateBasicInformation = ({ iconSize, courseData, onChange }) => {
+const CreateBasicInformation = ({
+    iconSize,
+    courseData,
+    onChange,
+    onGoalsChange,
+    onCategoriesChange,
+}) => {
     const {
         intro,
         description,
@@ -106,14 +114,14 @@ const CreateBasicInformation = ({ iconSize, courseData, onChange }) => {
                                     </div>
                                     <div className="col-md-9">
                                         <div className="form-item">
-                                            <input
-                                                type="text"
-                                                placeholder="Write here..."
-                                                id="goals"
-                                                name="goals"
-                                                value={goals}
-                                                onChange={onChange}
-                                                required
+                                            <ArrayOfInputs
+                                                iconSize={iconSize}
+                                                array={goals}
+                                                onArrayChange={onGoalsChange}
+                                                placeholder={
+                                                    "Write the goal of the course"
+                                                }
+                                                addButtonText={"New Goal"}
                                             />
                                         </div>
                                     </div>
@@ -234,248 +242,11 @@ const CreateBasicInformation = ({ iconSize, courseData, onChange }) => {
                                 </div>
                             </div>
 
-                            <div className="categories-item create-item">
-                                <div className="row">
-                                    <div className="col-md-3">
-                                        <h4 /*className="err"*/>Categories</h4>
-                                        {/* <span className="text-err">
-                                            choose at least one
-                                        </span> */}
-                                    </div>
-                                    <div className="col-md-9">
-                                        <table className="table-categories">
-                                            <tbody>
-                                                <tr>
-                                                    <td>
-                                                        <div className="form-item form-checkbox checkbox-style">
-                                                            <input
-                                                                type="checkbox"
-                                                                id="business"
-                                                            />
-                                                            <label htmlFor="business">
-                                                                <BsCheckSquareFill
-                                                                    size={
-                                                                        iconSize
-                                                                    }
-                                                                    className="icon-checkbox"
-                                                                />
-                                                                Business
-                                                            </label>
-                                                        </div>
-                                                    </td>
-
-                                                    <td>
-                                                        <div className="form-item form-checkbox checkbox-style">
-                                                            <input
-                                                                type="checkbox"
-                                                                id="lifestyle"
-                                                            />
-                                                            <label htmlFor="lifestyle">
-                                                                <BsCheckSquareFill
-                                                                    size={
-                                                                        iconSize
-                                                                    }
-                                                                    className="icon-checkbox"
-                                                                />
-                                                                Lifestyle
-                                                            </label>
-                                                        </div>
-                                                    </td>
-
-                                                    <td>
-                                                        <div className="form-item form-checkbox checkbox-style">
-                                                            <input
-                                                                type="checkbox"
-                                                                id="game"
-                                                            />
-                                                            <label htmlFor="game">
-                                                                <BsCheckSquareFill
-                                                                    size={
-                                                                        iconSize
-                                                                    }
-                                                                    className="icon-checkbox"
-                                                                />
-                                                                Game
-                                                            </label>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td>
-                                                        <div className="form-item form-checkbox checkbox-style">
-                                                            <input
-                                                                type="checkbox"
-                                                                id="design"
-                                                            />
-                                                            <label htmlFor="design">
-                                                                <BsCheckSquareFill
-                                                                    size={
-                                                                        iconSize
-                                                                    }
-                                                                    className="icon-checkbox"
-                                                                />
-                                                                Design
-                                                            </label>
-                                                        </div>
-                                                    </td>
-
-                                                    <td>
-                                                        <div className="form-item form-checkbox checkbox-style">
-                                                            <input
-                                                                type="checkbox"
-                                                                id="math-and-science"
-                                                            />
-                                                            <label htmlFor="math-and-science">
-                                                                <BsCheckSquareFill
-                                                                    size={
-                                                                        iconSize
-                                                                    }
-                                                                    className="icon-checkbox"
-                                                                />
-                                                                Math and Science
-                                                            </label>
-                                                        </div>
-                                                    </td>
-
-                                                    <td>
-                                                        <div className="form-item form-checkbox checkbox-style">
-                                                            <input
-                                                                type="checkbox"
-                                                                id="crafts-and-hobbies"
-                                                            />
-                                                            <label htmlFor="crafts-and-hobbies">
-                                                                <BsCheckSquareFill
-                                                                    size={
-                                                                        iconSize
-                                                                    }
-                                                                    className="icon-checkbox"
-                                                                />
-                                                                Crafts and
-                                                                Hobbies
-                                                            </label>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td>
-                                                        <div className="form-item form-checkbox checkbox-style">
-                                                            <input
-                                                                type="checkbox"
-                                                                id="photography"
-                                                            />
-                                                            <label htmlFor="photography">
-                                                                <BsCheckSquareFill
-                                                                    size={
-                                                                        iconSize
-                                                                    }
-                                                                    className="icon-checkbox"
-                                                                />
-                                                                Art and
-                                                                Photography
-                                                            </label>
-                                                        </div>
-                                                    </td>
-
-                                                    <td>
-                                                        <div className="form-item form-checkbox checkbox-style">
-                                                            <input
-                                                                type="checkbox"
-                                                                id="education"
-                                                            />
-                                                            <label htmlFor="education">
-                                                                <BsCheckSquareFill
-                                                                    size={
-                                                                        iconSize
-                                                                    }
-                                                                    className="icon-checkbox"
-                                                                />
-                                                                Education
-                                                            </label>
-                                                        </div>
-                                                    </td>
-
-                                                    <td>
-                                                        <div className="form-item form-checkbox checkbox-style">
-                                                            <input
-                                                                type="checkbox"
-                                                                id="music"
-                                                            />
-                                                            <label htmlFor="music">
-                                                                <BsCheckSquareFill
-                                                                    size={
-                                                                        iconSize
-                                                                    }
-                                                                    className="icon-checkbox"
-                                                                />
-                                                                Music
-                                                            </label>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td>
-                                                        <div className="form-item form-checkbox checkbox-style">
-                                                            <input
-                                                                type="checkbox"
-                                                                id="health"
-                                                            />
-                                                            <label htmlFor="health">
-                                                                <BsCheckSquareFill
-                                                                    size={
-                                                                        iconSize
-                                                                    }
-                                                                    className="icon-checkbox"
-                                                                />
-                                                                Health and
-                                                                Fitness
-                                                            </label>
-                                                        </div>
-                                                    </td>
-
-                                                    <td>
-                                                        <div className="form-item form-checkbox checkbox-style">
-                                                            <input
-                                                                type="checkbox"
-                                                                id="social-science"
-                                                            />
-                                                            <label htmlFor="social-science">
-                                                                <BsCheckSquareFill
-                                                                    size={
-                                                                        iconSize
-                                                                    }
-                                                                    className="icon-checkbox"
-                                                                />
-                                                                Social Science
-                                                            </label>
-                                                        </div>
-                                                    </td>
-
-                                                    <td>
-                                                        <div className="form-item form-checkbox checkbox-style">
-                                                            <input
-                                                                type="checkbox"
-                                                                id="sports"
-                                                            />
-                                                            <label htmlFor="sports">
-                                                                <BsCheckSquareFill
-                                                                    size={
-                                                                        iconSize
-                                                                    }
-                                                                    className="icon-checkbox"
-                                                                />
-                                                                Sports
-                                                            </label>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
+                            <Categories
+                                categories={categories}
+                                onCategoriesChange={onCategoriesChange}
+                                iconSize={iconSize}
+                            />
 
                             <div className="tool-requirement create-item">
                                 <div className="row">
@@ -534,38 +305,114 @@ const CreateBasicInformation = ({ iconSize, courseData, onChange }) => {
     );
 };
 
-const ArrayOfInputs = () => {
-    const [inputFields, setInputFields] = useState([
-        {
-            fullName: "",
-        },
-    ]);
+const Categories = ({ categories, onCategoriesChange, iconSize }) => {
+    return (
+        <div className="categories-item create-item">
+            <div className="row">
+                <div className="col-md-3">
+                    <h4 /*className="err"*/>Categories</h4>
+                    {/* <span className="text-err">
+                                            choose at least one
+                                        </span> */}
+                </div>
+                <div className="col-md-9">
+                    <table className="table-categories">
+                        <tbody>
+                            {categories
+                                // makes 2 dimensional array
+                                .reduce(
+                                    (rows, key, index) =>
+                                        (index % 3 == 0
+                                            ? rows.push([key])
+                                            : rows[rows.length - 1].push(
+                                                  key
+                                              )) && rows,
+                                    []
+                                )
+                                .map((row, index) => {
+                                    return (
+                                        <tr key={index}>
+                                            {row.map(category => {
+                                                return (
+                                                    <td key={category.name}>
+                                                        <div className="form-item form-checkbox checkbox-style">
+                                                            <input
+                                                                type="checkbox"
+                                                                id={
+                                                                    category.name
+                                                                }
+                                                                defaultChecked={
+                                                                    category.checked
+                                                                }
+                                                                onChange={
+                                                                    onCategoriesChange
+                                                                }
+                                                            />
+                                                            <label
+                                                                htmlFor={
+                                                                    category.name
+                                                                }
+                                                            >
+                                                                <BsCheckSquareFill
+                                                                    size={
+                                                                        iconSize
+                                                                    }
+                                                                    className="icon-checkbox"
+                                                                />
+                                                                {
+                                                                    category.content
+                                                                }
+                                                            </label>
+                                                        </div>
+                                                    </td>
+                                                );
+                                            })}
+                                        </tr>
+                                    );
+                                })}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+const ArrayOfInputs = ({
+    array,
+    onArrayChange,
+    placeholder,
+    iconSize,
+    addButtonText,
+}) => {
+    useEffect(() => {
+        if (array.length === 0) {
+            onArrayChange([""]);
+        }
+    });
 
     const addInputField = () => {
-        setInputFields([
-            ...inputFields,
-            {
-                fullName: "",
-            },
-        ]);
+        onArrayChange([...array, ""]);
     };
+
     const removeInputFields = index => {
-        const rows = [...inputFields];
+        const rows = [...array];
         rows.splice(index, 1);
-        setInputFields(rows);
+        onArrayChange(rows);
     };
+
     const handleChange = (index, evnt) => {
-        const { name, value } = evnt.target;
-        const list = [...inputFields];
-        list[index][name] = value;
-        setInputFields(list);
+        const { value } = evnt.target;
+        const list = [...array];
+        list[index] = value;
+        onArrayChange(list);
     };
+
     return (
         <div className="container">
             <div className="row">
-                <div className="col-sm-8">
-                    {inputFields.map((data, index) => {
-                        const { fullName, emailAddress, salary } = data;
+                <div className="col-sm-11">
+                    {array.map((element, index) => {
                         return (
                             <div className="row my-3" key={index}>
                                 <div className="col">
@@ -575,22 +422,23 @@ const ArrayOfInputs = () => {
                                             onChange={evnt =>
                                                 handleChange(index, evnt)
                                             }
-                                            value={fullName}
-                                            name="fullName"
+                                            value={element}
                                             className="form-control"
-                                            placeholder="Full Name"
+                                            placeholder={placeholder}
                                         />
                                     </div>
                                 </div>
 
                                 <div className="col">
-                                    {inputFields.length !== 1 ? (
-                                        <button
-                                            className="btn btn-outline-danger"
+                                    {array.length !== 1 ? (
+                                        <TiDeleteOutline
+                                            size={iconSize}
+                                            style={{
+                                                color: "red",
+                                                cursor: "pointer",
+                                            }}
                                             onClick={removeInputFields}
-                                        >
-                                            x
-                                        </button>
+                                        />
                                     ) : (
                                         ""
                                     )}
@@ -601,17 +449,18 @@ const ArrayOfInputs = () => {
 
                     <div className="row">
                         <div className="col-sm-12">
-                            <button
-                                className="btn btn-outline-success "
+                            <a
+                                className="add-instructor"
                                 onClick={addInputField}
                             >
-                                Add New
-                            </button>
+                                <FaPlus size={iconSize} className="icon" />
+                                {addButtonText}
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
-            <div className="col-sm-4"></div>
+            <div className="col-sm-1"></div>
         </div>
     );
 };

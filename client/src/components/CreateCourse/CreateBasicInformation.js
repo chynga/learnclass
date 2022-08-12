@@ -3,7 +3,9 @@ import { BiSupport } from "react-icons/bi";
 import { BsCheckSquareFill } from "react-icons/bs";
 import { TiDeleteOutline } from "react-icons/ti";
 import { FaPlus } from "react-icons/fa";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef } from "react";
+import Tags from "@yaireo/tagify/dist/react.tagify";
+import "@yaireo/tagify/dist/tagify.css";
 
 const CreateBasicInformation = ({
     iconSize,
@@ -11,6 +13,8 @@ const CreateBasicInformation = ({
     onChange,
     onGoalsChange,
     onCategoriesChange,
+    onToolsRequiredChange,
+    onTagsChange,
 }) => {
     const {
         intro,
@@ -25,6 +29,34 @@ const CreateBasicInformation = ({
         tags,
         lectures,
     } = courseData;
+
+    const toolsRequiredSettings = {
+        whitelist: ["Photoshop CC", "Illustrator CC"],
+        maxTags: 10,
+        dropdown: {
+            maxItems: 20, // <- mixumum allowed rendered suggestions
+            classname: "tags-look", // <- custom classname for this dropdown, so it could be targeted
+            enabled: 0, // <- show suggestions on focus
+            closeOnSelect: false, // <- do not hide the suggestions dropdown once an item has been selected
+        },
+    };
+
+    const tagsSettings = {
+        whitelist: [
+            "Design",
+            "Photoshop",
+            "Illustrator",
+            "Art",
+            "Graphic Design",
+        ],
+        maxTags: 10,
+        dropdown: {
+            maxItems: 20, // <- mixumum allowed rendered suggestions
+            classname: "tags-look", // <- custom classname for this dropdown, so it could be targeted
+            enabled: 0, // <- show suggestions on focus
+            closeOnSelect: false, // <- do not hide the suggestions dropdown once an item has been selected
+        },
+    };
 
     return (
         <section id="create-course-section" className="create-course-section">
@@ -248,48 +280,19 @@ const CreateBasicInformation = ({
                                 iconSize={iconSize}
                             />
 
-                            <div className="tool-requirement create-item">
-                                <div className="row">
-                                    <div className="col-md-3">
-                                        <h4 /*className="err"*/>
-                                            Tool requirement
-                                        </h4>
-                                        {/* <span className="text-err">
-                                            not filled yet
-                                        </span> */}
-                                    </div>
-                                    <div className="col-md-9">
-                                        <div className="form-item">
-                                            <input
-                                                type="text"
-                                                // className="error"
-                                            />
-                                            <span>
-                                                type your tool, separated by
-                                                comma or space
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <TagInput
+                                updateCourseState={onToolsRequiredChange}
+                                settings={toolsRequiredSettings}
+                                label={"Tool requirement"}
+                                placeholder={"type tools"}
+                            />
 
-                            <div className="tag-item create-item">
-                                <div className="row">
-                                    <div className="col-md-3">
-                                        <h4>Tag</h4>
-                                    </div>
-                                    <div className="col-md-9">
-                                        <div className="form-item">
-                                            <input type="text" />
-                                            <span>
-                                                type your tool, separated by
-                                                comma or space
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
+                            <TagInput
+                                updateCourseState={onTagsChange}
+                                settings={tagsSettings}
+                                label={"Tags"}
+                                placeholder={"type tags"}
+                            />
                             <div className="form-action">
                                 <input
                                     type="submit"
@@ -302,6 +305,40 @@ const CreateBasicInformation = ({
                 </div>
             </div>
         </section>
+    );
+};
+
+const TagInput = ({ updateCourseState, settings, label, placeholder }) => {
+    const tagifyRef = useRef();
+
+    const onChange = useCallback(e => {
+        updateCourseState(e.detail.tagify.value.map(tag => tag.value));
+    }, []);
+
+    return (
+        <div className="tool-requirement create-item">
+            <div className="row">
+                <div className="col-md-3">
+                    <h4 /*className="err"*/>{label}</h4>
+                    {/* <span className="text-err">
+                                            not filled yet
+                                        </span> */}
+                </div>
+                <div className="col-md-9">
+                    {/* <div className="form-item"> */}
+                    <Tags
+                        tagifyRef={tagifyRef}
+                        settings={settings}
+                        onChange={onChange}
+                        placeholder={placeholder}
+                    />
+                    <div className="form-item">
+                        <span>type your tool, separated by comma or space</span>
+                    </div>
+                    {/* </div> */}
+                </div>
+            </div>
+        </div>
     );
 };
 

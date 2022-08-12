@@ -120,6 +120,20 @@ const CreateCourse = () => {
         }));
     };
 
+    const onToolsRequiredChange = newArray => {
+        setCourseData(prevState => ({
+            ...prevState,
+            tools_required: newArray,
+        }));
+    };
+
+    const onTagsChange = newArray => {
+        setCourseData(prevState => ({
+            ...prevState,
+            tags: newArray,
+        }));
+    };
+
     return (
         <>
             <CourseTitle iconSize={iconSize} name={name} onChange={onChange} />
@@ -129,6 +143,8 @@ const CreateCourse = () => {
                 onChange={onChange}
                 onGoalsChange={onGoalsChange}
                 onCategoriesChange={onCategoriesChange}
+                onToolsRequiredChange={onToolsRequiredChange}
+                onTagsChange={onTagsChange}
             />
         </>
     );

@@ -1,11 +1,10 @@
-import { BsCameraVideoFill } from "react-icons/bs";
-import { BiSupport } from "react-icons/bi";
 import { BsCheckSquareFill } from "react-icons/bs";
 import { TiDeleteOutline } from "react-icons/ti";
 import { FaPlus } from "react-icons/fa";
 import { useCallback, useEffect, useRef } from "react";
 import Tags from "@yaireo/tagify/dist/react.tagify";
 import "@yaireo/tagify/dist/tagify.css";
+import { Page } from "./CreateCourse";
 
 const CreateBasicInformation = ({
     iconSize,
@@ -15,6 +14,7 @@ const CreateBasicInformation = ({
     onCategoriesChange,
     onToolsRequiredChange,
     onTagsChange,
+    setFormPage,
 }) => {
     const {
         intro,
@@ -59,252 +59,210 @@ const CreateBasicInformation = ({
     };
 
     return (
-        <section id="create-course-section" className="create-course-section">
-            <div className="container">
-                <div className="row">
-                    <div className="col-md-3">
-                        <div className="create-course-sidebar">
-                            <ul className="list-bar">
-                                <li className="active">
-                                    <span className="count">1</span>Basic
-                                    Information
-                                </li>
-                                <li>
-                                    <span className="count">2</span>Design
-                                    Course
-                                </li>
-                                <li>
-                                    <span className="count">3</span>Publish
-                                    Course
-                                </li>
-                            </ul>
-                            <div className="support">
-                                <a href="#">
-                                    <BsCameraVideoFill
-                                        size={iconSize}
-                                        className="icon"
-                                    />
-                                    See how it work short tutorial
-                                </a>
-                                <a href="#">
-                                    <BiSupport
-                                        size={iconSize}
-                                        className="icon"
-                                    />
-                                    Instant Support
-                                </a>
+        <div className="col-md-9">
+            <div className="create-course-content">
+                <div className="description create-item">
+                    <div className="row">
+                        <div className="col-md-3">
+                            <h4>Introduction</h4>
+                        </div>
+                        <div className="col-md-9">
+                            <div className="description-editor text-form-editor">
+                                <textarea
+                                    placeholder="Introduction content"
+                                    id="intro"
+                                    name="intro"
+                                    value={intro}
+                                    onChange={onChange}
+                                    required
+                                ></textarea>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <div className="col-md-9">
-                        <div className="create-course-content">
-                            <div className="description create-item">
-                                <div className="row">
-                                    <div className="col-md-3">
-                                        <h4>Introduction</h4>
-                                    </div>
-                                    <div className="col-md-9">
-                                        <div className="description-editor text-form-editor">
-                                            <textarea
-                                                placeholder="Introduction content"
-                                                id="intro"
-                                                name="intro"
-                                                value={intro}
-                                                onChange={onChange}
-                                                required
-                                            ></textarea>
-                                        </div>
-                                    </div>
-                                </div>
+                <div className="description create-item">
+                    <div className="row">
+                        <div className="col-md-3">
+                            <h4>Description</h4>
+                        </div>
+                        <div className="col-md-9">
+                            <div className="description-editor text-form-editor">
+                                <textarea
+                                    placeholder="Description content"
+                                    id="description"
+                                    name="description"
+                                    value={description}
+                                    onChange={onChange}
+                                    required
+                                ></textarea>
                             </div>
+                        </div>
+                    </div>
+                </div>
 
-                            <div className="description create-item">
-                                <div className="row">
-                                    <div className="col-md-3">
-                                        <h4>Description</h4>
-                                    </div>
-                                    <div className="col-md-9">
-                                        <div className="description-editor text-form-editor">
-                                            <textarea
-                                                placeholder="Description content"
-                                                id="description"
-                                                name="description"
-                                                value={description}
-                                                onChange={onChange}
-                                                required
-                                            ></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="wide-input create-item">
-                                <div className="row">
-                                    <div className="col-md-3">
-                                        <h4>Course Goals</h4>
-                                    </div>
-                                    <div className="col-md-9">
-                                        <div className="form-item">
-                                            <ArrayOfInputs
-                                                iconSize={iconSize}
-                                                array={goals}
-                                                onArrayChange={onGoalsChange}
-                                                placeholder={
-                                                    "Write the goal of the course"
-                                                }
-                                                addButtonText={"New Goal"}
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="wide-input create-item">
-                                <div className="row">
-                                    <div className="col-md-3">
-                                        <h4>Course Banner</h4>
-                                    </div>
-                                    <div className="col-md-9">
-                                        <div className="form-item">
-                                            <input
-                                                type="text"
-                                                placeholder="Paste URL"
-                                                id="bannerURL"
-                                                name="bannerURL"
-                                                value={bannerURL}
-                                                onChange={onChange}
-                                                required
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="wide-input create-item">
-                                <div className="row">
-                                    <div className="col-md-3">
-                                        <h4>Promo Video</h4>
-                                    </div>
-                                    <div className="col-md-9">
-                                        <div className="form-item">
-                                            <input
-                                                type="text"
-                                                placeholder="Paste URL"
-                                                id="promoURL"
-                                                name="promoURL"
-                                                value={promoURL}
-                                                onChange={onChange}
-                                                required
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="duration create-item">
-                                <div className="row">
-                                    <div className="col-md-3">
-                                        <h4>Duration</h4>
-                                    </div>
-                                    <div className="col-md-9">
-                                        <div className="duration-ct">
-                                            <div className="form-item">
-                                                <input
-                                                    type="text"
-                                                    id="duration"
-                                                    name="duration"
-                                                    value={duration}
-                                                    onChange={onChange}
-                                                    required
-                                                />
-                                            </div>
-                                            <span className="day">days</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="for-level-from create-item">
-                                <div className="row">
-                                    <div className="col-md-3">
-                                        <h4>Level</h4>
-                                    </div>
-                                    <div className="col-md-9">
-                                        <div className="form-item form-radio radio-style">
-                                            <input
-                                                type="radio"
-                                                id="beginner"
-                                                name="difficulty"
-                                                onChange={onChange}
-                                                defaultChecked
-                                            />
-                                            <label htmlFor="beginner">
-                                                <i className="icon-radio"></i>
-                                                Beginner
-                                            </label>
-                                        </div>
-
-                                        <div className="form-item form-radio radio-style">
-                                            <input
-                                                type="radio"
-                                                id="intermediate"
-                                                name="difficulty"
-                                                onChange={onChange}
-                                            />
-                                            <label htmlFor="intermediate">
-                                                <i className="icon-radio"></i>
-                                                Intermediate
-                                            </label>
-                                        </div>
-
-                                        <div className="form-item form-radio radio-style">
-                                            <input
-                                                type="radio"
-                                                id="professional"
-                                                name="difficulty"
-                                                onChange={onChange}
-                                            />
-                                            <label htmlFor="professional">
-                                                <i className="icon-radio"></i>
-                                                Professional
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <Categories
-                                categories={categories}
-                                onCategoriesChange={onCategoriesChange}
-                                iconSize={iconSize}
-                            />
-
-                            <TagInput
-                                updateCourseState={onToolsRequiredChange}
-                                settings={toolsRequiredSettings}
-                                label={"Tool requirement"}
-                                placeholder={"type tools"}
-                            />
-
-                            <TagInput
-                                updateCourseState={onTagsChange}
-                                settings={tagsSettings}
-                                label={"Tags"}
-                                placeholder={"type tags"}
-                            />
-                            <div className="form-action">
-                                <input
-                                    type="submit"
-                                    value="Save and Next"
-                                    className="submit mc-btn-3 btn-style-1"
+                <div className="wide-input create-item">
+                    <div className="row">
+                        <div className="col-md-3">
+                            <h4>Course Goals</h4>
+                        </div>
+                        <div className="col-md-9">
+                            <div className="form-item">
+                                <ArrayOfInputs
+                                    iconSize={iconSize}
+                                    array={goals}
+                                    onArrayChange={onGoalsChange}
+                                    placeholder={"Write the goal of the course"}
+                                    addButtonText={"New Goal"}
                                 />
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <div className="wide-input create-item">
+                    <div className="row">
+                        <div className="col-md-3">
+                            <h4>Course Banner</h4>
+                        </div>
+                        <div className="col-md-9">
+                            <div className="form-item">
+                                <input
+                                    type="text"
+                                    placeholder="Paste URL"
+                                    id="bannerURL"
+                                    name="bannerURL"
+                                    value={bannerURL}
+                                    onChange={onChange}
+                                    required
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="wide-input create-item">
+                    <div className="row">
+                        <div className="col-md-3">
+                            <h4>Promo Video</h4>
+                        </div>
+                        <div className="col-md-9">
+                            <div className="form-item">
+                                <input
+                                    type="text"
+                                    placeholder="Paste URL"
+                                    id="promoURL"
+                                    name="promoURL"
+                                    value={promoURL}
+                                    onChange={onChange}
+                                    required
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="duration create-item">
+                    <div className="row">
+                        <div className="col-md-3">
+                            <h4>Duration</h4>
+                        </div>
+                        <div className="col-md-9">
+                            <div className="duration-ct">
+                                <div className="form-item">
+                                    <input
+                                        type="text"
+                                        id="duration"
+                                        name="duration"
+                                        value={duration}
+                                        onChange={onChange}
+                                        required
+                                    />
+                                </div>
+                                <span className="day">days</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="for-level-from create-item">
+                    <div className="row">
+                        <div className="col-md-3">
+                            <h4>Level</h4>
+                        </div>
+                        <div className="col-md-9">
+                            <div className="form-item form-radio radio-style">
+                                <input
+                                    type="radio"
+                                    id="beginner"
+                                    name="difficulty"
+                                    onChange={onChange}
+                                    defaultChecked
+                                />
+                                <label htmlFor="beginner">
+                                    <i className="icon-radio"></i>
+                                    Beginner
+                                </label>
+                            </div>
+
+                            <div className="form-item form-radio radio-style">
+                                <input
+                                    type="radio"
+                                    id="intermediate"
+                                    name="difficulty"
+                                    onChange={onChange}
+                                />
+                                <label htmlFor="intermediate">
+                                    <i className="icon-radio"></i>
+                                    Intermediate
+                                </label>
+                            </div>
+
+                            <div className="form-item form-radio radio-style">
+                                <input
+                                    type="radio"
+                                    id="professional"
+                                    name="difficulty"
+                                    onChange={onChange}
+                                />
+                                <label htmlFor="professional">
+                                    <i className="icon-radio"></i>
+                                    Professional
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <Categories
+                    categories={categories}
+                    onCategoriesChange={onCategoriesChange}
+                    iconSize={iconSize}
+                />
+
+                <TagInput
+                    updateCourseState={onToolsRequiredChange}
+                    settings={toolsRequiredSettings}
+                    label={"Tool requirement"}
+                    placeholder={"type tools"}
+                />
+
+                <TagInput
+                    updateCourseState={onTagsChange}
+                    settings={tagsSettings}
+                    label={"Tags"}
+                    placeholder={"type tags"}
+                />
+                <div className="form-action">
+                    <input
+                        type="submit"
+                        value="Save and Next"
+                        className="submit mc-btn-3 btn-style-1"
+                        onClick={() => setFormPage(Page.OUTLINE)}
+                    />
+                </div>
             </div>
-        </section>
+        </div>
     );
 };
 

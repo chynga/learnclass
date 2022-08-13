@@ -7464,7 +7464,7 @@ footer#footer.footer-style-2 {
 .create-course-content tr .td-form-item span.name-file {
   display: inline-block;
 }
-.create-course-content tr.tb-unit-title .form-item input {
+.create-course-content tr.tb-wide-input .form-item input {
   width: 100%;
 }
 .create-course-content .tr-file .trigger-file {

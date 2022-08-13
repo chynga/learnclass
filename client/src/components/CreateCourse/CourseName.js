@@ -1,4 +1,4 @@
-import { BsPencilFill } from "react-icons/bs";
+import { GiPencil } from "react-icons/gi";
 
 const CourseName = ({ iconSize, name, onChange }) => {
     return (
@@ -16,7 +16,7 @@ const CourseName = ({ iconSize, name, onChange }) => {
                 />{" "}
                 {/* <h2 className="md ilbl">Title of the course goes here</h2> */}
                 <label htmlFor="name">
-                    <BsPencilFill size={iconSize} className="icon" />
+                    <GiPencil size={iconSize} className="icon" />
                 </label>
             </div>
         </section>

@@ -1,9 +1,18 @@
 import { useEffect, useState } from "react";
 import CourseTitle from "./CourseName";
 import CreateBasicInformation from "./CreateBasicInformation";
+import CreateLectures from "./CreateLectures";
+import Sidebar from "./Sidebar";
+
+export const Page = {
+    BASIC: "Basic Information",
+    OUTLINE: "Design Course",
+    PREVIEW: "Publish Course",
+};
 
 const CreateCourse = () => {
     const iconSize = 18;
+    const [formPage, setFormPage] = useState(Page.BASIC);
     const [courseData, setCourseData] = useState({
         name: "",
         intro: "",
@@ -137,15 +146,35 @@ const CreateCourse = () => {
     return (
         <>
             <CourseTitle iconSize={iconSize} name={name} onChange={onChange} />
-            <CreateBasicInformation
-                iconSize={iconSize}
-                courseData={courseData}
-                onChange={onChange}
-                onGoalsChange={onGoalsChange}
-                onCategoriesChange={onCategoriesChange}
-                onToolsRequiredChange={onToolsRequiredChange}
-                onTagsChange={onTagsChange}
-            />
+            <section
+                id="create-course-section"
+                className="create-course-section"
+            >
+                <div className="container">
+                    <div className="row">
+                        <Sidebar
+                            iconSize={iconSize}
+                            formPage={formPage}
+                            Page={Page}
+                        />
+                        {formPage === Page.BASIC && (
+                            <CreateBasicInformation
+                                iconSize={iconSize}
+                                courseData={courseData}
+                                onChange={onChange}
+                                onGoalsChange={onGoalsChange}
+                                onCategoriesChange={onCategoriesChange}
+                                onToolsRequiredChange={onToolsRequiredChange}
+                                onTagsChange={onTagsChange}
+                                setFormPage={setFormPage}
+                            />
+                        )}
+                        {formPage === Page.OUTLINE && (
+                            <CreateLectures iconSize={iconSize} />
+                        )}
+                    </div>
+                </div>
+            </section>
         </>
     );
 };

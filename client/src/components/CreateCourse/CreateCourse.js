@@ -170,7 +170,10 @@ const CreateCourse = () => {
                             />
                         )}
                         {formPage === Page.OUTLINE && (
-                            <CreateLectures iconSize={iconSize} />
+                            <CreateLectures
+                                iconSize={iconSize}
+                                setFormPage={setFormPage}
+                            />
                         )}
                     </div>
                 </div>

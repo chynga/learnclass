@@ -3,8 +3,9 @@ import { FaTrashAlt } from "react-icons/fa";
 import { GiPencil } from "react-icons/gi";
 import { BsCaretDownSquare } from "react-icons/bs";
 import { GoPlus } from "react-icons/go";
+import { Page } from "./CreateCourse";
 
-const CreateLectures = ({ iconSize }) => {
+const CreateLectures = ({ iconSize, setFormPage }) => {
     return (
         <div className="col-md-9">
             <div className="create-course-content">
@@ -125,6 +126,25 @@ const CreateLectures = ({ iconSize }) => {
                                             </a>
                                         </li>
                                     </ul>
+
+                                    <div className="form-action">
+                                        <input
+                                            type="submit"
+                                            value="Previous"
+                                            className="submit mc-btn-3 btn-style-1 me-3"
+                                            onClick={() =>
+                                                setFormPage(Page.BASIC)
+                                            }
+                                        />
+                                        <input
+                                            type="submit"
+                                            value="Next"
+                                            className="submit mc-btn-3 btn-style-1"
+                                            onClick={() =>
+                                                setFormPage(Page.PREVIEW)
+                                            }
+                                        />
+                                    </div>
                                 </div>
                             </div>
                         </div>

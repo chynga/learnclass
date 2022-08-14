@@ -245,6 +245,7 @@ const CreateBasicInformation = ({
                     settings={toolsRequiredSettings}
                     label={"Tool requirement"}
                     placeholder={"type tools"}
+                    tags={tools_required}
                 />
 
                 <TagInput
@@ -252,6 +253,7 @@ const CreateBasicInformation = ({
                     settings={tagsSettings}
                     label={"Tags"}
                     placeholder={"type tags"}
+                    tags={tags}
                 />
                 <div className="form-action">
                     <input
@@ -266,7 +268,13 @@ const CreateBasicInformation = ({
     );
 };
 
-const TagInput = ({ updateCourseState, settings, label, placeholder }) => {
+const TagInput = ({
+    updateCourseState,
+    settings,
+    label,
+    tags,
+    placeholder,
+}) => {
     const tagifyRef = useRef();
 
     const onChange = useCallback(e => {
@@ -277,23 +285,19 @@ const TagInput = ({ updateCourseState, settings, label, placeholder }) => {
         <div className="tool-requirement create-item">
             <div className="row">
                 <div className="col-md-3">
-                    <h4 /*className="err"*/>{label}</h4>
-                    {/* <span className="text-err">
-                                            not filled yet
-                                        </span> */}
+                    <h4>{label}</h4>
                 </div>
                 <div className="col-md-9">
-                    {/* <div className="form-item"> */}
                     <Tags
                         tagifyRef={tagifyRef}
                         settings={settings}
                         onChange={onChange}
                         placeholder={placeholder}
+                        defaultValue={tags}
                     />
                     <div className="form-item">
                         <span>type your tool, separated by comma or space</span>
                     </div>
-                    {/* </div> */}
                 </div>
             </div>
         </div>

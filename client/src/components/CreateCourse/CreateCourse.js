@@ -3,6 +3,7 @@ import CourseTitle from "./CourseName";
 import CreateBasicInformation from "./CreateBasicInformation";
 import CreateLectures from "./CreateLectures";
 import Sidebar from "./Sidebar";
+// import { v4 as uuid } from "uuid"; --- for test
 
 export const Page = {
     BASIC: "Basic Information",
@@ -86,9 +87,22 @@ const CreateCourse = () => {
         ],
         tools_required: [],
         tags: [],
-        lectures: [],
+        lectures: [
+            // {   --- for test
+            //     id: uuid(),
+            //     title: "Lecture 1",
+            //     description: "This is the description for lecture 1",
+            //     videoURL: "https://github.com/atlassian/react-beautiful-dnd",
+            // },
+            // {
+            //     id: uuid(),
+            //     title: "Lecture 2",
+            //     description: "This is the description for lecture 2",
+            //     videoURL: "https://github.com/atlassian/react-beautiful-dnd",
+            // },  --- for test
+        ],
     });
-    const { name } = courseData;
+    const { name, lectures } = courseData;
 
     useEffect(() => {
         console.log(courseData);
@@ -143,6 +157,13 @@ const CreateCourse = () => {
         }));
     };
 
+    const onLecturesChange = newArray => {
+        setCourseData(prevState => ({
+            ...prevState,
+            lectures: newArray,
+        }));
+    };
+
     return (
         <>
             <CourseTitle iconSize={iconSize} name={name} onChange={onChange} />
@@ -171,6 +192,8 @@ const CreateCourse = () => {
                         )}
                         {formPage === Page.OUTLINE && (
                             <CreateLectures
+                                lectures={lectures}
+                                onLecturesChange={onLecturesChange}
                                 iconSize={iconSize}
                                 setFormPage={setFormPage}
                             />

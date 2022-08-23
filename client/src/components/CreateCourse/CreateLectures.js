@@ -248,7 +248,7 @@ const CreateLectures = ({
                                             value="Next"
                                             className="submit mc-btn-3 btn-style-1"
                                             onClick={() =>
-                                                setFormPage(Page.PREVIEW)
+                                                setFormPage(Page.PUBLISH)
                                             }
                                         />
                                     </div>

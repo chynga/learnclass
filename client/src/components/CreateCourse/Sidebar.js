@@ -15,9 +15,9 @@ const Sidebar = ({ iconSize, formPage }) => {
                         <span className="count">2</span>
                         {Page.OUTLINE}
                     </li>
-                    <li className={formPage === Page.PREVIEW ? "active" : ""}>
+                    <li className={formPage === Page.PUBLISH ? "active" : ""}>
                         <span className="count">3</span>
-                        {Page.PREVIEW}
+                        {Page.PUBLISH}
                     </li>
                 </ul>
                 <div className="support">

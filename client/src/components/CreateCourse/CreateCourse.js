@@ -3,16 +3,20 @@ import CourseTitle from "./CourseName";
 import CreateBasicInformation from "./CreateBasicInformation";
 import CreateLectures from "./CreateLectures";
 import Sidebar from "./Sidebar";
+import CreatePublish from "./CreatePublish";
+import { useSelector } from "react-redux";
+
 // import { v4 as uuid } from "uuid"; --- for test
 
 export const Page = {
     BASIC: "Basic Information",
     OUTLINE: "Design Course",
-    PREVIEW: "Publish Course",
+    PUBLISH: "Publish Course",
 };
 
 const CreateCourse = () => {
     const iconSize = 18;
+    const { user } = useSelector(state => state.auth);
     const [formPage, setFormPage] = useState(Page.BASIC);
     const [courseData, setCourseData] = useState({
         name: "",
@@ -166,7 +170,14 @@ const CreateCourse = () => {
 
     return (
         <>
-            <CourseTitle iconSize={iconSize} name={name} onChange={onChange} />
+            {formPage === Page.BASIC && (
+                <CourseTitle
+                    iconSize={iconSize}
+                    name={name}
+                    onChange={onChange}
+                />
+            )}
+
             <section
                 id="create-course-section"
                 className="create-course-section"
@@ -196,6 +207,14 @@ const CreateCourse = () => {
                                 onLecturesChange={onLecturesChange}
                                 iconSize={iconSize}
                                 setFormPage={setFormPage}
+                            />
+                        )}
+                        {formPage === Page.PUBLISH && (
+                            <CreatePublish
+                                courseData={courseData}
+                                iconSize={iconSize}
+                                setFormPage={setFormPage}
+                                user={user}
                             />
                         )}
                     </div>

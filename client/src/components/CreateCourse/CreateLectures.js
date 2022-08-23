@@ -4,6 +4,7 @@ import { GiPencil } from "react-icons/gi";
 import { BsCaretDownSquare } from "react-icons/bs";
 import { GoPlus } from "react-icons/go";
 import { Page } from "./CreateCourse";
+import { v4 as uuid } from "uuid";
 
 const CreateLectures = ({
     lectures,
@@ -16,6 +17,22 @@ const CreateLectures = ({
         lecture[e.target.name] = e.target.value;
         lectures.map(lec => (lec.id === id ? lecture : lec));
         onLecturesChange(lectures);
+    };
+
+    const createLecture = () => {
+        const newLectures = lectures;
+        newLectures.push({
+            id: uuid(),
+            title: "",
+            description: "",
+            videoURL: "",
+        });
+        onLecturesChange(newLectures);
+    };
+
+    const deleteLecture = id => {
+        const newLectures = lectures.filter(lecture => lecture.id !== id);
+        onLecturesChange(newLectures);
     };
 
     return (
@@ -46,7 +63,7 @@ const CreateLectures = ({
                                                         {lecture.title}
                                                     </h5>
                                                     <div className="course-region-tool">
-                                                        <a
+                                                        {/* <a
                                                             href="#"
                                                             className="edit"
                                                             title="edit"
@@ -54,8 +71,8 @@ const CreateLectures = ({
                                                             <GiPencil
                                                                 size={iconSize}
                                                             />
-                                                        </a>
-                                                        <a
+                                                        </a> */}
+                                                        {/* <a
                                                             href="#"
                                                             className="drag"
                                                             title="drag"
@@ -63,17 +80,22 @@ const CreateLectures = ({
                                                             <BsArrowsMove
                                                                 size={iconSize}
                                                             />
-                                                        </a>
+                                                        </a> */}
                                                         <a
                                                             href="#"
                                                             className="delete"
                                                             title="delete"
+                                                            onClick={e =>
+                                                                deleteLecture(
+                                                                    lecture.id
+                                                                )
+                                                            }
                                                         >
                                                             <FaTrashAlt
                                                                 size={iconSize}
                                                             />
                                                         </a>
-                                                        <a
+                                                        {/* <a
                                                             href="#"
                                                             className="save"
                                                             title="save"
@@ -81,7 +103,7 @@ const CreateLectures = ({
                                                             <BsCaretDownSquare
                                                                 size={iconSize}
                                                             />
-                                                        </a>
+                                                        </a> */}
                                                     </div>
                                                 </div>
 
@@ -201,6 +223,7 @@ const CreateLectures = ({
                                             <a
                                                 href="#"
                                                 className="mc-btn-3 btn-style-7"
+                                                onClick={createLecture}
                                             >
                                                 <GoPlus
                                                     className="icon"

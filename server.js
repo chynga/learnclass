@@ -1,3 +1,4 @@
+const path = require("path");
 const express = require("express");
 const dotenv = require("dotenv").config();
 const mongoose = require("mongoose");
@@ -11,30 +12,6 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// const secret = process.env.SECRET || "thisshouldbeabettersecret!";
-
-// const sessionConfig = {
-//     name: "session",
-//     secret,
-//     resave: false,
-//     saveUninitialized: true,
-//     cookie: {
-//         httpOnly: true,
-//         // secure: true,
-//         expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
-//         maxAge: 1000 * 60 * 60 * 24 * 7,
-//     },
-// };
-
-// app.use(session(sessionConfig));
-
-// app.use(passport.initialize());
-// app.use(passport.session());
-// passport.use(new LocalStrategy(User.authenticate()));
-
-// passport.serializeUser(User.serializeUser());
-// passport.deserializeUser(User.deserializeUser());
-
 // DB
 const db = process.env.MONGO_URI;
 
@@ -45,6 +22,17 @@ mongoose
 
 app.use("/api/users", user);
 app.use("/api/courses", course);
+
+// Serve frontend
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static(path.join(__dirname, "./client/build")));
+
+    app.get("*", (req, res) =>
+        res.sendFile(path.resolve(__dirname, "client", "build", "index.html"))
+    );
+} else {
+    app.get("/", (req, res) => res.send("Please set to production"));
+}
 
 app.use(errorHandler);
 

@@ -43,7 +43,6 @@ const CourseSchema = new Schema(
         categories: [
             {
                 type: String,
-                enum: ["it", "business", "design", "health_and_fitness"],
             },
         ],
         tools_required: [

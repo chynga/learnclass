@@ -4,9 +4,9 @@ import CreateBasicInformation from "./CreateBasicInformation";
 import CreateLectures from "./CreateLectures";
 import Sidebar from "./Sidebar";
 import CreatePublish from "./CreatePublish";
-import { useSelector } from "react-redux";
-
-// import { v4 as uuid } from "uuid"; --- for test
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { createCourse } from "../../features/courses/courseSlice";
 
 export const Page = {
     BASIC: "Basic Information",
@@ -17,6 +17,8 @@ export const Page = {
 const CreateCourse = () => {
     const iconSize = 18;
     const { user } = useSelector(state => state.auth);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [formPage, setFormPage] = useState(Page.BASIC);
     const [courseData, setCourseData] = useState({
         name: "",
@@ -91,26 +93,31 @@ const CreateCourse = () => {
         ],
         tools_required: [],
         tags: [],
-        lectures: [
-            // {   --- for test
-            //     id: uuid(),
-            //     title: "Lecture 1",
-            //     description: "This is the description for lecture 1",
-            //     videoURL: "https://github.com/atlassian/react-beautiful-dnd",
-            // },
-            // {
-            //     id: uuid(),
-            //     title: "Lecture 2",
-            //     description: "This is the description for lecture 2",
-            //     videoURL: "https://github.com/atlassian/react-beautiful-dnd",
-            // },  --- for test
-        ],
+        lectures: [],
     });
     const { name, lectures } = courseData;
 
     useEffect(() => {
         console.log(courseData);
     }, [courseData]);
+
+    const create = () => {
+        const course = {
+            ...courseData,
+            categories: courseData.categories
+                .filter(category => category.checked)
+                .map(checkedCat => checkedCat.name),
+            lectures: courseData.lectures.map(lecture => {
+                return {
+                    title: lecture.title,
+                    description: lecture.description,
+                    videoURL: lecture.videoURL,
+                };
+            }),
+        };
+        dispatch(createCourse(course));
+        navigate("/courses");
+    };
 
     const onChange = e => {
         switch (e.target.type) {
@@ -215,6 +222,7 @@ const CreateCourse = () => {
                                 iconSize={iconSize}
                                 setFormPage={setFormPage}
                                 user={user}
+                                createCourse={create}
                             />
                         )}
                     </div>

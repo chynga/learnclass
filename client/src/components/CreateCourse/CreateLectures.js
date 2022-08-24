@@ -237,8 +237,8 @@ const CreateLectures = ({
                                     <div className="form-action">
                                         <input
                                             type="submit"
-                                            value="Previous"
-                                            className="submit mc-btn-3 btn-style-1 me-3"
+                                            value="Go Back"
+                                            className="submit mc-btn-3 btn-style-6 me-3"
                                             onClick={() =>
                                                 setFormPage(Page.BASIC)
                                             }
@@ -246,7 +246,7 @@ const CreateLectures = ({
                                         <input
                                             type="submit"
                                             value="Next"
-                                            className="submit mc-btn-3 btn-style-1"
+                                            className="submit mc-btn-3 btn-style-6"
                                             onClick={() =>
                                                 setFormPage(Page.PUBLISH)
                                             }

@@ -1,10 +1,15 @@
 import moment from "moment";
 import { BiTime } from "react-icons/bi";
 import { BsCalendar2Check, BsPeopleFill } from "react-icons/bs";
+import { Page } from "./CreateCourse";
 
-const CreatePublish = ({ courseData, user, iconSize }) => {
-    // 25 May 2014
-
+const CreatePublish = ({
+    courseData,
+    user,
+    iconSize,
+    setFormPage,
+    createCourse,
+}) => {
     return (
         <div className="col-md-9">
             <div className="create-course-content">
@@ -162,13 +167,15 @@ const CreatePublish = ({ courseData, user, iconSize }) => {
                 <div className="form-action confirm-save">
                     <input
                         type="submit"
-                        value="Confirm And Send Request"
-                        className="submit mc-btn-3 btn-style-1"
+                        value="Go Back"
+                        className="submit mc-btn-3 btn-style-6"
+                        onClick={() => setFormPage(Page.OUTLINE)}
                     />
                     <input
                         type="submit"
-                        value="Save Draft"
-                        className="submit mc-btn-3 btn-style-6"
+                        value="Confirm And Create"
+                        className="submit mc-btn-3 btn-style-1"
+                        onClick={createCourse}
                     />
                 </div>
             </div>

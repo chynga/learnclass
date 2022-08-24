@@ -258,8 +258,8 @@ const CreateBasicInformation = ({
                 <div className="form-action">
                     <input
                         type="submit"
-                        value="Save and Next"
-                        className="submit mc-btn-3 btn-style-1"
+                        value="Next"
+                        className="submit mc-btn-3 btn-style-6"
                         onClick={() => setFormPage(Page.OUTLINE)}
                     />
                 </div>
